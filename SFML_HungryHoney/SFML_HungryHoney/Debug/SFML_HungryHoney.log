@@ -1,3 +1,5 @@
-﻿  main.cpp
-d:\github\hungryhoney\sfml_hungryhoney\sfml_hungryhoney\main.cpp(25): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  SFML_HungryHoney.vcxproj -> D:\GitHub\HungryHoney\SFML_HungryHoney\Debug\SFML_HungryHoney.exe
+﻿  BeeObject.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  SFML_HungryHoney.vcxproj -> D:\Development\Github\HungryHoney\SFML_HungryHoney\Debug\SFML_HungryHoney.exe

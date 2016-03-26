@@ -14,6 +14,7 @@ CollidableObject::~CollidableObject()
 
 void CollidableObject::UpdateObject()
 {
+	oldPosition = objPosition;
 	GameObject::UpdateObject();
 	objCollider = objSprite.getGlobalBounds();
 }
@@ -28,12 +29,8 @@ void CollidableObject::CollisionDetect(CollidableObject object)
 	if (objCollider.intersects(object.objCollider)) 
 	{
 		cout << "Collision detected!" << endl;
-		Vector2f offset(objPosition - object.objPosition);
-		float length = sqrt((offset.x*offset.x) + (offset.y*offset.y));
-		if (length != 0)
-			objVelocity = Vector2f(offset.x / length, offset.y / length);
-		else
-			objVelocity = offset;
-		cout << "Offset X:" << offset.x << " Y:" << offset.y << endl;
+		objVelocity = Vector2f(0, 0);
+		objPosition = oldPosition;
+		objSprite.setPosition(oldPosition);
 	}
 }

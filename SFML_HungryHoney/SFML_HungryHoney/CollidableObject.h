@@ -5,6 +5,7 @@ class CollidableObject :
 {
 public:
 	FloatRect objCollider;
+	Vector2f oldPosition;
 
 	CollidableObject(Texture& texture, Vector2f position);
 	~CollidableObject();	
