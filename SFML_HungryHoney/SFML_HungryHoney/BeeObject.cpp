@@ -13,21 +13,26 @@ BeeObject::~BeeObject()
 
 void BeeObject::UpdateObject()
 {
+	CharacterObject::UpdateObject();
 	float distance = Vector2Normalizer::NormalizeFloat(objPosition,player.objPosition);
 	if (distance < damageRange) {
 		Attack(player);
+		cout << "Attack!" << endl;
 	}
 	else if (distance < pursuitRange) {
-		objVelocity += Vector2Normalizer::NormalizeVector(objPosition, player.oldPosition);
+		Vector2f vDistance = Vector2Normalizer::NormalizeVector(objPosition, player.oldPosition);
+		objVelocity = Vector2f(vDistance.x*-maxSpeed, vDistance.y*-maxSpeed);
+		cout << "Follow! vel X:" << objVelocity.x << " Y:" << objVelocity.y << endl;
 	}
 	else {
-		Vector2f v = circlePos - center;
+		objVelocity = Vector2f(0, 0);
+		/*Vector2f v = circlePos - objPosition;
 
 		float x = v.x*cos(angle) + v.y*sin(angle);
 		float y = v.y*cos(angle) - v.x*sin(angle);
 		circlePos = Vector2f(x, y) + center;
-		objSprite.move(circlePos);
-		cout << "Circles! X:" << x << " Y:" << y << endl;
+		objSprite.setPosition(circlePos);
+		cout << "Circles! X:" << x << " Y:" << y << endl;*/
 	}
 }
 

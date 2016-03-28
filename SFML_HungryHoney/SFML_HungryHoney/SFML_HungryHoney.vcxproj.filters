@@ -79,5 +79,8 @@
     <Image Include="Resources\Sprites\SFML-Vector.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="C:\Users\Geert\Downloads\kenney\roguelike-modern-city-pack\Spritesheet\roguelikeCity_magenta.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

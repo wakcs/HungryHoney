@@ -14,19 +14,19 @@ CharacterObject::~CharacterObject()
 {
 }
 
-void CharacterObject::Attack(CharacterObject character)
+void CharacterObject::Attack(CharacterObject& character)
 {
 	float distance = Vector2Normalizer::NormalizeFloat(objPosition, character.objPosition);
 	if (distance < damageRange) {
-		character.TakeDamage(this);
+		character.TakeDamage(damagePoints);
 	}
 }
 
-void CharacterObject::TakeDamage(CharacterObject* character)
+void CharacterObject::TakeDamage(float& characterDamage)
 {
-	float recievingDamage = (character->damagePoints - defencePoints);
+	float recievingDamage = (characterDamage - defencePoints);
 	if (recievingDamage > 0) {
-		healthPoints -= recievingDamage;
+		healthPoints = (healthPoints - recievingDamage);
+		cout << "I was attacked! HP:" << healthPoints << endl;
 	}
-	cout << "I was attacked! HP:" << healthPoints << endl;
 }
