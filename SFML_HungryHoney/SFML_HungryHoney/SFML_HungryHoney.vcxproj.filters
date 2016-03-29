@@ -42,7 +42,13 @@
     <ClInclude Include="CharacterObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2Normalizer.h">
+    <ClInclude Include="Beehive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2Extender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,7 +74,13 @@
     <ClCompile Include="CharacterObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2Normalizer.cpp">
+    <ClCompile Include="Beehive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2Extender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

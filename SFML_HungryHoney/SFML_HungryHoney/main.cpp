@@ -8,56 +8,78 @@
 #include "CollidableObject.h"
 #include "PlayerObject.h"
 #include "BeeObject.h"
+#include "Beehive.h"
+#include "Hud.h"
 #include <list>
-#include <Thor\Animations.hpp>
 
 using namespace sf;
 using namespace std;
 
-const int windowWidth = 800;
-const int windowHeight = 600;
+enum GameState {
+	MAINMENU,
+	INTRO,
+	GAMEPLAY,
+	PAUSE,
+	CREDITS
+};
+
+Vector2f windowSize(800, 600);
 const string windowTitle = "Hungry Honey";
 const int frameLimit = 60;
+const float viewScale = 5;
+GameState gameState = GameState(GAMEPLAY);
 
-list<CollidableObject> obstructions;
+list<CollidableObject*> obstructions;
+const int beehiveAmount = 3;
 list<GameObject> backgroundList;
-const float mapWidth = 8000;
-const float mapHeight = 8000;
+const Vector2i mapSize(8000, 8000);
+const Vector2i blockSize(400, 400);
+const int scale = 25;
+const int rectSize = 16;
+Texture txtrGrass, objTexture, suitTexture, weaponTexture, txtrBeehive, txtrInteract, txtrHealth;
+Image imgSheet, imgSun;
+Font hudFont;
+
 
 int main()
 {
 	//Uncomment if you want to hide the console window
-	//FreeConsole();//creates the window where te magic happens
-	RenderWindow window(VideoMode(windowWidth, windowHeight), windowTitle);
+	//FreeConsole();
+	//creates the window where te magic happens
+	RenderWindow window(VideoMode(windowSize.x,windowSize.y), windowTitle);
 	window.setFramerateLimit(frameLimit);
 	//2D Camera
-	View mainView(FloatRect(windowWidth / 2, windowHeight / 2, windowWidth, windowHeight));
-	mainView.zoom(5.f);
+	View mainView(FloatRect(Vector2f(0,0), windowSize));
+	mainView.zoom(viewScale);
 
-
-	Texture objTexture; 
-	objTexture.loadFromFile("SFML-Vector.png");
-	Texture bgTexture;
-	if (bgTexture.loadFromFile("grass.png")) {
-		for (float x = -(mapWidth / 2); x < mapWidth / 2; x += 800)
+	//BACKGROUND, WILL CHANGE TO TMXPARSER
+	if (!imgSheet.loadFromFile("roguelikeSheet.png")) {
+		return 1;
+	}
+	txtrGrass.loadFromImage(imgSheet, IntRect(85, 0, rectSize, rectSize));
+	for (int x = -(mapSize.x / 2) - blockSize.x; x < (mapSize.x / 2) + blockSize.x; x += blockSize.x)
+	{
+		for (int y = -(mapSize.y / 2) - blockSize.y; y < (mapSize.y / 2) + blockSize.y; y += blockSize.y)
 		{
-			for (float y = -(mapHeight / 2); y < mapHeight / 2; y += 800)
-			{
-				cout << "Adding tile cords:" << x << "," << y << endl;
-				GameObject background(bgTexture, Vector2f(x, y));
-				background.objSprite.setScale(50, 50);
-				backgroundList.push_back(background);
-			}
+			GameObject background(txtrGrass, Vector2f(x, y), scale);
+			backgroundList.push_back(background);
 		}
 	}
-	Texture suitTexture;
-	Texture weaponTexture;
-	CollidableObject heavyObj(objTexture, Vector2f(100, -500));
-	CollidableObject lightObj(objTexture, Vector2f(0, 700));
-	obstructions.push_back(heavyObj);
-	obstructions.push_back(lightObj);
-	PlayerObject player(objTexture, Vector2f(0, 0), suitTexture, weaponTexture, 10, 0, 0, 50, mainView);
-	BeeObject bee(objTexture, Vector2f(800, 800), 2, 0, 2, 400, player, 1000);
+	objTexture.loadFromFile("SFML-Vector.png");
+	PlayerObject player(objTexture, Vector2f(0, 0), 1, suitTexture, weaponTexture, 10, 0, 0, 50, mainView);
+	BeeObject bee(objTexture, Vector2f(800, 800), 0.5f, 2, 0, 2, 400, player, 1000);
+
+	txtrBeehive.loadFromFile("chest.png");
+	txtrInteract.loadFromFile("letter_E.png");
+	
+	for (size_t i = 0; i < beehiveAmount; i++)
+	{
+		obstructions.push_back(new Beehive(txtrBeehive, Vector2Extender::RandomVectorCoords(Vector2i(2000, 2000), true), 25, txtrInteract, mapSize, 400, player));
+	}
+
+	txtrHealth.loadFromFile("HealthBar.png");
+	hudFont.loadFromFile("arial.ttf");		
+	Hud mainHud(txtrHealth, imgSun, hudFont, player, Time(seconds(120)), windowSize);
 
 	while (window.isOpen()) 
 	{
@@ -66,55 +88,51 @@ int main()
 		{
 			if (event.type == Event::Closed)
 				window.close();
-
-		}
-		//update
-		/*if (Keyboard::isKeyPressed(Keyboard::Left)) 
-		{
-			mainView.move(Vector2f(-1,0));
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Right))
-		{
-			mainView.move(Vector2f(1, 0));
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Up))
-		{
-			mainView.move(Vector2f(0, -1));
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Down))
-		{
-			mainView.move(Vector2f(0, 1));
-		}
-		if (Keyboard::isKeyPressed(Keyboard::LShift)) {
-			mainView.zoom(2.f);
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Space)) {
-			mainView.zoom(0.5f);
-		}*/
-		player.UpdateObject();
-		bee.UpdateObject();
-		if (Mouse::isButtonPressed(player.mbShoot)) {
-			//player.Attack(nearest bee)
-		}
-		for each (CollidableObject object in obstructions)
-		{
-			player.CollisionDetect(object);
-			object.UpdateObject();
 		}
 
-		//drawing
 		window.clear();
-		for each (GameObject background in backgroundList)
+		switch (gameState)
 		{
-			background.DrawObject(window);
+		case MAINMENU:
+			break;
+		case INTRO:
+			break;
+		case GAMEPLAY:
+			window.setView(mainView);
+			mainHud.UpdateHud(mainView);
+			player.UpdateObject();
+			bee.UpdateObject();
+			if (Mouse::isButtonPressed(player.mbShoot)) {
+				//player.Attack(nearest bee)
+			}
+			for each (GameObject background in backgroundList)
+			{
+				background.DrawObject(window);
+			}
+			for each (CollidableObject* object in obstructions)
+			{
+				player.CollisionDetect(object);
+				object->UpdateObject();
+				object->DrawObject(window);
+			}
+			/*player.CollisionDetect(beehive1);
+			player.CollisionDetect(beehive2);
+			beehive1.UpdateObject();
+			beehive2.UpdateObject();
+			beehive1.DrawObject(window);
+			beehive2.DrawObject(window);*/
+			player.DrawObject(window);
+			bee.DrawObject(window);
+			mainHud.DrawHud(window);
+			break;
+		case PAUSE:
+			break;
+		case CREDITS:
+			break;
+		default:
+			break;
 		}
-		heavyObj.DrawObject(window);
-		lightObj.DrawObject(window);
-		player.DrawObject(window);
-		bee.DrawObject(window);
-		window.setView(mainView);
 		window.display();
 	}
     return 0;
 }
-

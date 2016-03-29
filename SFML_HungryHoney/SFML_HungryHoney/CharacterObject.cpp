@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "CharacterObject.h"
-#include "Vector2Normalizer.h"
 
-CharacterObject::CharacterObject(Texture & texture, Vector2f position, float healthPoints, float defencePoints, float damagePoints, float damageRange) : CollidableObject(texture, position)
+CharacterObject::CharacterObject(Texture & texture, Vector2f position, float scale, float healthPoints, float defencePoints, float damagePoints, float damageRange) : CollidableObject(texture, position, scale)
 {
 	CharacterObject::healthPoints = healthPoints;
 	CharacterObject::defencePoints = defencePoints;
@@ -16,7 +15,7 @@ CharacterObject::~CharacterObject()
 
 void CharacterObject::Attack(CharacterObject& character)
 {
-	float distance = Vector2Normalizer::NormalizeFloat(objPosition, character.objPosition);
+	float distance = Vector2Extender::NormalizeFloat(objPosition, character.objPosition);
 	if (distance < damageRange) {
 		character.TakeDamage(damagePoints);
 	}

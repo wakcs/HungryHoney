@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "PlayerObject.h"
 
-PlayerObject::PlayerObject(Texture & texture, Vector2f position, Texture & suit, Texture & weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View & mainCam)
-	: CharacterObject(texture,position, healthPoints,damagePoints, defencePoints, damageRange), mainCam(mainCam)
+PlayerObject::PlayerObject(Texture & texture, Vector2f position, float scale, Texture & suit, Texture & weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View & mainCam)
+	: CharacterObject(texture,position, scale, healthPoints,damagePoints, defencePoints, damageRange), mainCam(mainCam)
 {
+	score = 0;
 	PlayerObject::suit.setTexture(suit);
 	PlayerObject::suit.setPosition(position + suitOffset);
 	PlayerObject::weapon.setTexture(weapon);

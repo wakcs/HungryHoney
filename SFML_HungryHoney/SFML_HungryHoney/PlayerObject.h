@@ -15,7 +15,9 @@ public:
 	const Vector2f suitOffset = Vector2f(0,0);
 	const Vector2f weaponOffset = Vector2f(50, 50);
 
-	PlayerObject(Texture& texture, Vector2f position, Texture& suit, Texture& weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View& mainCam);
+	int score = 0;
+
+	PlayerObject(Texture& texture, Vector2f position, float scale, Texture& suit, Texture& weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View& mainCam);
 	~PlayerObject();	
 
 	void UpdateObject();

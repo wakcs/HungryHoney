@@ -88,12 +88,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Development\SFML\x86\include;D:\Development\thor\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Development\zlib\include;D:\Development\SFML\x86\include;D:\Development\thor\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Development\thor\lib;D:\Development\SFML\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Development\zlib\lib;D:\Development\thor\lib;D:\Development\SFML\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -122,14 +122,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Development\SFML\x86\include;D:\Development\thor\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Development\zlib\include;D:\Development\SFML\x86\include;D:\Development\thor\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Development\thor\lib;D:\Development\SFML\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Development\zlib\lib;D:\Development\thor\lib;D:\Development\SFML\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;thor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -159,20 +159,24 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Beehive.h" />
     <ClInclude Include="BeeObject.h" />
     <ClInclude Include="CharacterObject.h" />
     <ClInclude Include="CollidableObject.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Vector2Normalizer.h" />
+    <ClInclude Include="Vector2Extender.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Beehive.cpp" />
     <ClCompile Include="BeeObject.cpp" />
     <ClCompile Include="CharacterObject.cpp" />
     <ClCompile Include="CollidableObject.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -181,7 +185,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Vector2Normalizer.cpp" />
+    <ClCompile Include="Vector2Extender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Geert\Downloads\kenney\roguelike-modern-city-pack\Spritesheet\roguelikeCity_magenta.png" />

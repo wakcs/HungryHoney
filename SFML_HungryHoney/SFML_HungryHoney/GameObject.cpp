@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "GameObject.h"
-#include <SFML\Graphics.hpp>
-#include <iostream>
-using namespace sf;
-using namespace std;
 
-GameObject::GameObject(Texture& texture, Vector2f position)
+GameObject::GameObject(Texture& texture, Vector2f position, float scale)
 {	
 	objSprite.setTexture(texture);
+	objSprite.setScale(scale, scale);
+	spriteDimensions = texture.getSize();
 	objPosition = position;
 	objSprite.setPosition(objPosition);
 }
