@@ -1,10 +1,30 @@
 #include "stdafx.h"
 #include "PlayerObject.h"
 
-PlayerObject::PlayerObject(Texture & texture, Vector2f position, float scale, Texture & suit, Texture & weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View & mainCam)
-	: CharacterObject(texture,position, scale, healthPoints,damagePoints, defencePoints, damageRange), mainCam(mainCam)
+PlayerObject::PlayerObject()
 {
-	score = 0;
+	kbUp = Keyboard::Key::W;
+	kbDown = Keyboard::Key::S;
+	kbLeft = Keyboard::Key::A;
+	kbRight = Keyboard::Key::D;
+	kbInteract = Keyboard::Key::E;
+	mbShoot = Mouse::Button::Left;
+	suitOffset = Vector2f(0, 0);
+	weaponOffset = Vector2f(50, 50);
+}
+
+PlayerObject::PlayerObject(Texture & texture, Vector2f position, float scale, Texture & suit, Texture & weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View* mainCam)
+	: CharacterObject(texture,position, scale, healthPoints,damagePoints, defencePoints, damageRange)
+{
+	kbUp = Keyboard::Key::W;
+	kbDown = Keyboard::Key::S;
+	kbLeft = Keyboard::Key::A;
+	kbRight = Keyboard::Key::D;
+	kbInteract = Keyboard::Key::E;
+	mbShoot = Mouse::Button::Left;
+	suitOffset = Vector2f(0, 0);
+	weaponOffset = Vector2f(50, 50);
+	PlayerObject::mainCam = mainCam;
 	PlayerObject::suit.setTexture(suit);
 	PlayerObject::suit.setPosition(position + suitOffset);
 	PlayerObject::weapon.setTexture(weapon);
@@ -37,7 +57,7 @@ void PlayerObject::UpdateObject()
 	else {
 		objVelocity.x = 0;
 	}
-	mainCam.setCenter(oldPosition + Vector2f(objCollider.width / 2, objCollider.height / 2));
+	mainCam->setCenter(oldPosition + Vector2f(objCollider.width / 2, objCollider.height / 2));
 }
 
 void PlayerObject::DrawObject(RenderWindow & window)

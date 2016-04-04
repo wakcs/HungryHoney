@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
+GameObject::GameObject()
+{
+}
+
 GameObject::GameObject(Texture& texture, Vector2f position, float scale)
 {	
 	objSprite.setTexture(texture);

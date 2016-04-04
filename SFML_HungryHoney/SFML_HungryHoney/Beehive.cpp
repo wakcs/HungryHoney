@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "Beehive.h"
 
-Beehive::Beehive(Texture & texture, Vector2f position, float scale, Texture & interact, Vector2i spawnArea, float interactRange, PlayerObject& player) : CollidableObject(texture, position, scale), player(player)
+Beehive::Beehive()
+{
+}
+
+Beehive::Beehive(Texture & texture, Vector2f position, float scale, Texture & interact, Vector2i spawnArea, float interactRange) : CollidableObject(texture, position, scale)
 {
 	objInteract.setTexture(interact);
 	interactDimensions = interact.getSize();
@@ -14,17 +18,17 @@ Beehive::~Beehive()
 {
 }
 
-void Beehive::UpdateObject()
+void Beehive::UpdateObject(PlayerObject* player)
 {
-	float distance = Vector2Extender::NormalizeFloat(objPosition, player.objPosition);
+	float distance = Vector2Extender::NormalizeFloat(objPosition, player->objPosition);
 	if (distance < interactRange) {
 		inRange = true;
 	}
 	else {
 		inRange = false;
 	}
-	if (inRange && Keyboard::isKeyPressed(player.kbInteract)) {
-		player.score+=100;
+	if (inRange && Keyboard::isKeyPressed(player->kbInteract)) {
+		player->score += 100;
 		cout << "Interacted, moving..." << endl;
 		objSprite.setPosition(Vector2Extender::RandomVectorCoords(spawnArea, true));
 		cout << "New Coords: " << rndX << "," << rndY << endl;

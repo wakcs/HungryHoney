@@ -15,6 +15,7 @@ public:
 	Vector2f objPosition;
 	Vector2f objVelocity;
 
+	GameObject();
 	GameObject(Texture& texture, Vector2f position, float scale);
 	~GameObject();
 

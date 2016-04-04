@@ -1,8 +1,15 @@
 #include "stdafx.h"
 #include "CharacterObject.h"
 
-CharacterObject::CharacterObject(Texture & texture, Vector2f position, float scale, float healthPoints, float defencePoints, float damagePoints, float damageRange) : CollidableObject(texture, position, scale)
+CharacterObject::CharacterObject()
 {
+	maxSpeed = 50.0f;
+}
+
+CharacterObject::CharacterObject(Texture & texture, Vector2f position, float scale, float healthPoints, float defencePoints, float damagePoints, float damageRange)
+	: CollidableObject(texture, position, scale)
+{
+	maxSpeed = 50.0f;
 	CharacterObject::healthPoints = healthPoints;
 	CharacterObject::defencePoints = defencePoints;
 	CharacterObject::damagePoints = damagePoints;

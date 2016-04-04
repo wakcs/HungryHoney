@@ -1,25 +1,37 @@
 #include "stdafx.h"
 #include "Hud.h"
 
-
-Hud::Hud(Texture & txtrHealthBar, Image& imgSunRising, Font& font, PlayerObject& player, Time gameDuration, Vector2f& screenSize)
-	: player(player), screenSize(screenSize)
+Hud::Hud()
 {
+	posHealthBar = Vector2f(-10, -10);
+	posScore = Vector2f(0, -10);
+	posTime = Vector2f(10, -10);
+	scale = 10;
+}
+
+Hud::Hud(Texture & txtrHealthBar, Texture & txtrSun, Font& font, PlayerObject* player, Time gameDuration, View* mainView)
+{
+	scale = 5;
+	Hud::player = player;
+	Hud::mainView = mainView;
+
+	posHealthBar = Vector2f(-(mainView->getSize().x/2), -(mainView->getSize().y / 2));
 	sprtHealthBar.setTexture(txtrHealthBar);
-	sprtHealthBar.setScale(player.healthPoints*hpBarMultiplier, 10);
-	//sprtHealthBar.setPosition(0, screenSize.y - 10);
 
-	v2uSunSize = imgSunRising.getSize();
-	txtrSunRising.loadFromImage(imgSunRising, IntRect(0, 0, v2uSunSize.x, v2uSunSize.y / 2));
-	sprtSunRising.setTexture(txtrSunRising);
-	//sprtSunRising.setPosition(screenSize.x - v2uSunSize.x, 0);
+	v2uSunSize = txtrSun.getSize();
+	sprtSunRising.setTexture(txtrSun);
 
-	//txtScore.setFont(font);
+	txtScore.setFont(font);
 	txtScore.setColor(Color::White);
-	//txtScore.setPosition(0, 0);
-	//txtTime.setFont(font);
+	txtScore.setScale(scale, scale);
+	posScore = Vector2f(-(mainView->getSize().x / 2), (mainView->getSize().y / 2) - scale *50);
+
+	txtTime.setFont(font);
 	txtTime.setColor(Color::White);
-	//txtTime.setPosition(screenSize.x - v2uSunSize.x - 100, 0);
+	txtTime.setScale(scale, scale);
+	posTime = Vector2f((mainView->getSize().x / 2) - scale * 275, (mainView->getSize().y / 2) - scale * 45);
+	posSun = Vector2f(posTime.x - v2uSunSize.x, posTime.y);
+	fSunStep = (v2uSunSize.y / 2) / gameDuration.asSeconds();
 
 	Hud::gameDuration = gameDuration;
 }
@@ -28,13 +40,25 @@ Hud::~Hud()
 {
 }
 
-void Hud::UpdateHud(View& mainCam)
+void Hud::UpdateHud()
 {
-	sprtHealthBar.setScale(player.healthPoints*hpBarMultiplier, 10);
-	sprtHealthBar.setPosition(mainCam.getCenter() + posHealthBar);
-	txtScore.setString("Score: " + player.score);
-	float secondsLeft = clock.getElapsedTime().asSeconds() - gameDuration.asSeconds();
-	txtTime.setString("Time Left: " + to_string(secondsLeft));
+	sprtHealthBar.setScale(player->healthPoints*scale*2, scale*2);
+	sprtHealthBar.setPosition(mainView->getCenter() + posHealthBar);
+
+	txtScore.setString("Score: " + to_string(player->score));
+	txtScore.setPosition(mainView->getCenter() + posScore);
+		
+	if (secondsLeft < 0) {
+		secondsLeft = clock.getElapsedTime().asSeconds() - gameDuration.asSeconds();
+		if (tick < secondsLeft) {
+			posSun.y -= fSunStep;
+		}
+		tick = secondsLeft;
+	}
+		txtTime.setString("Time Left: " + to_string(abs(secondsLeft)));
+		txtTime.setPosition(mainView->getCenter() + posTime);
+
+		sprtSunRising.setPosition(mainView->getCenter() + posSun);
 }
 
 void Hud::DrawHud(RenderWindow & window)

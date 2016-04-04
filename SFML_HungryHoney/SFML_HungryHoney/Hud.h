@@ -7,23 +7,26 @@ using namespace std;
 class Hud
 {
 public:
-	Vector2f& screenSize;
-	PlayerObject& player;
+	View* mainView;
+	PlayerObject* player;
 	Sprite sprtHealthBar, sprtSunRising;
 	Text txtScore, txtTime;
 	Texture txtrSunRising;
 	Vector2u v2uSunSize;
 	Time gameDuration;
 	Clock clock;
-	const Vector2f posHealthBar = Vector2f(-2000, -1500);
+	Vector2f posHealthBar, posScore, posTime, posSun;
+	float fSunStep; 
+	int secondsLeft, tick;
 
-	Hud(Texture& txtrHealthBar, Image& imgSunRising, Font& font, PlayerObject& player, Time gameDuration, Vector2f& screenSize);
+	Hud();
+	Hud(Texture& txtrHealthBar, Texture& txtrSun, Font& font, PlayerObject* player, Time gameDuration, View* mainView);
 	~Hud();
 
-	void UpdateHud(View& mainCam);
+	void UpdateHud();
 	void DrawHud(RenderWindow& window);
 
 private:
-	const float hpBarMultiplier = 10;
+	float scale;
 };
 

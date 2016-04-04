@@ -4,20 +4,16 @@ class PlayerObject :
 	public CharacterObject
 {
 public:
-	const Keyboard::Key kbUp = Keyboard::Key::W;
-	const Keyboard::Key kbDown = Keyboard::Key::S;
-	const Keyboard::Key kbLeft = Keyboard::Key::A;
-	const Keyboard::Key kbRight = Keyboard::Key::D;
-	const Keyboard::Key kbInteract = Keyboard::Key::E;
-	const Mouse::Button mbShoot = Mouse::Button::Left;
-	View& mainCam;
+	Keyboard::Key kbUp, kbDown, kbLeft, kbRight, kbInteract;
+	Mouse::Button mbShoot;
+	View* mainCam;
 	Sprite suit, weapon;
-	const Vector2f suitOffset = Vector2f(0,0);
-	const Vector2f weaponOffset = Vector2f(50, 50);
+	Vector2f suitOffset, weaponOffset;
 
 	int score = 0;
 
-	PlayerObject(Texture& texture, Vector2f position, float scale, Texture& suit, Texture& weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View& mainCam);
+	PlayerObject();
+	PlayerObject(Texture& texture, Vector2f position, float scale, Texture& suit, Texture& weapon, float healthPoints, float damagePoints, float defencePoints, float damageRange, View* mainCam);
 	~PlayerObject();	
 
 	void UpdateObject();

@@ -161,11 +161,15 @@
   <ItemGroup>
     <ClInclude Include="Beehive.h" />
     <ClInclude Include="BeeObject.h" />
+    <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="CharacterObject.h" />
     <ClInclude Include="CollidableObject.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="Hud.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PlayerObject.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Vector2Extender.h" />
@@ -173,12 +177,16 @@
   <ItemGroup>
     <ClCompile Include="Beehive.cpp" />
     <ClCompile Include="BeeObject.cpp" />
+    <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="CharacterObject.cpp" />
     <ClCompile Include="CollidableObject.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -8,12 +8,12 @@ public:
 	float interactRange;
 	Vector2i spawnArea;
 	Sprite objInteract;
-	PlayerObject& player;
 
-	Beehive(Texture& texture, Vector2f position, float scale, Texture& interact, Vector2i spawnArea, float interactRange, PlayerObject& player);
+	Beehive();
+	Beehive(Texture& texture, Vector2f position, float scale, Texture& interact, Vector2i spawnArea, float interactRange);
 	~Beehive();
 
-	void UpdateObject();
+	void UpdateObject(PlayerObject* player);
 	void DrawObject(RenderWindow &window);
 
 protected:

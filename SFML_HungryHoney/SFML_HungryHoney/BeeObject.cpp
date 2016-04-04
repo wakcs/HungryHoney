@@ -1,10 +1,17 @@
 #include "stdafx.h"
 #include "BeeObject.h"
 
-BeeObject::BeeObject(Texture & texture, Vector2f position, float scale, float healthPoints, float damagePoints, float defencePoints, float damageRange, PlayerObject& player, float pursuitRange)
-	: CharacterObject(texture, position, scale, healthPoints, damagePoints, defencePoints, damageRange), player(player)
+BeeObject::BeeObject()
 {
+	maxSpeed = 25.0f;
+}
+
+BeeObject::BeeObject(Texture & texture, Vector2f position, float scale, float healthPoints, float damagePoints, float defencePoints, float damageRange, PlayerObject* player, float pursuitRange)
+	: CharacterObject(texture, position, scale, healthPoints, damagePoints, defencePoints, damageRange)
+{
+	maxSpeed = 25.0f;
 	BeeObject::pursuitRange = pursuitRange;
+	BeeObject::player = player;
 }
 
 BeeObject::~BeeObject()
@@ -14,13 +21,18 @@ BeeObject::~BeeObject()
 void BeeObject::UpdateObject()
 {
 	CharacterObject::UpdateObject();
-	float distance = Vector2Extender::NormalizeFloat(objPosition,player.objPosition);
-	if (distance < damageRange) {
-		Attack(player);
-		cout << "Attack!" << endl;
+	float distance = Vector2Extender::NormalizeFloat(objPosition,player->objPosition);
+	if (distance < damageRange) 
+	{
+		if (cDelayCounter.getElapsedTime().asSeconds() > tAttackDelay.asSeconds()) 
+		{
+			Attack(*player);
+			cout << "Attack!" << endl;
+			cDelayCounter.restart();
+		}
 	}
 	else if (distance < pursuitRange) {
-		Vector2f vDistance = Vector2Extender::NormalizeVector(objPosition, player.oldPosition);
+		Vector2f vDistance = Vector2Extender::NormalizeVector(objPosition, player->oldPosition);
 		objVelocity = Vector2f(vDistance.x*-maxSpeed, vDistance.y*-maxSpeed);
 	}
 	else {
