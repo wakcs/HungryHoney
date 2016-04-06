@@ -1,5 +1,6 @@
 #pragma once
 #include "Pickup.h"
+#include <iostream>
 class BeehivePickup :
 	public Pickup
 {

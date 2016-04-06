@@ -6,7 +6,7 @@ class PlayerCharacter :
 {
 public:
 	PlayerCharacter();
-	PlayerCharacter(Texture* charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, int maxSpeed, int healthPoints, int defencePoints, int damagePoints, int attackRange);
+	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, int maxSpeed, int healthPoints, int defencePoints, int damagePoints, int attackRange);
 	~PlayerCharacter();
 
 	//called in the update
@@ -16,11 +16,12 @@ public:
 	//getters
 	int GetDefencePoints();
 	int GetScore();
+	Keyboard::Key GetInteractKey();
 
 	//setters
 	void SetDefencePoints(int defencePoints);
-	void SetSuitTexture(const Texture* suitTexture);
-	void SetWeaponTexture(const Texture* weaponTexture);
+	void SetSuit(Sprite suit);
+	void SetWeapon(Sprite weapon);
 	void SetScore(int score);
 	void AddScore(int points);
 	void SubtractScore(int points);
@@ -28,8 +29,8 @@ public:
 private:
 	int iDefencePoints, iScore;
 	Sprite sprtSuit, sprtWeapon;
-	Vector2f suitOffset = Vector2f(0, 0);
-	Vector2f weaponOffset = Vector2f(8, 0);
+	Vector2f suitOffset;
+	Vector2f weaponOffset;
 
 	//inputs
 	Keyboard::Key kbUp = Keyboard::Key::W;

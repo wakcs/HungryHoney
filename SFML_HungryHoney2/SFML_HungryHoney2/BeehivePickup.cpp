@@ -21,9 +21,11 @@ BeehivePickup::~BeehivePickup()
 void BeehivePickup::Update(PlayerCharacter * player)
 {
 	Pickup::Update(player);
-	if (bInRange) 
+	if (bInRange && Keyboard::isKeyPressed(player->GetInteractKey())) 
 	{
 		player->AddScore(iPoints);
-		SetPosition(Vector2Extender::RandomVectorCoords(spawnArea, true));
+		Vector2f newPos = Vector2Extender::RandomVectorCoords(spawnArea, false);
+		cout << "New Pos: " << newPos.x << "," << newPos.y << endl;
+		SetPosition(newPos);
 	}
 }

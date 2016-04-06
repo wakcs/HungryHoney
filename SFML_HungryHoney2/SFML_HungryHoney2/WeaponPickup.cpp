@@ -4,6 +4,7 @@
 
 WeaponPickup::WeaponPickup()
 {
+	bPickedUp = false;
 }
 
 WeaponPickup::WeaponPickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, int damagePoints, int attackRange)
@@ -11,6 +12,7 @@ WeaponPickup::WeaponPickup(Texture * itemTexture, Texture * InteractTexture, Vec
 {
 	WeaponPickup::damagePoints = damagePoints;
 	WeaponPickup::attackRange = attackRange;
+	bPickedUp = false;
 }
 
 
@@ -23,9 +25,9 @@ void WeaponPickup::Update(PlayerCharacter * player)
 	if (!bPickedUp) 
 	{
 		Pickup::Update(player);
-		if (bInRange) 
+		if (bInRange && Keyboard::isKeyPressed(player->GetInteractKey())) 
 		{
-			player->SetWeaponTexture(sprtItem.getTexture());
+			player->SetWeapon(sprtItem);
 			player->SetDamagePoints(damagePoints);
 			player->SetAttackRange(attackRange);
 			bPickedUp = true;

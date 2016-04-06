@@ -45,7 +45,7 @@ void Pickup::Draw(RenderWindow & window)
 void Pickup::SetPosition(Vector2f position)
 {
 	sprtItem.setPosition(position);
-	position.y += sprtInteract.getLocalBounds().height;
+	position.y -= sprtInteract.getLocalBounds().height;
 	position.x += (sprtItem.getLocalBounds().width / 2) - (sprtInteract.getLocalBounds().width / 2);
 	sprtInteract.setPosition(position);
 }

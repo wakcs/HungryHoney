@@ -5,12 +5,14 @@
 SuitPickup::SuitPickup()
 {
 	defencePoints = 0;
+	bPickedUp = false;
 }
 
 SuitPickup::SuitPickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, int defencePoints)
 	:Pickup(itemTexture,InteractTexture,position,pickupRange)
 {
 	SuitPickup::defencePoints = defencePoints;
+	bPickedUp = false;
 }
 
 
@@ -23,9 +25,9 @@ void SuitPickup::Update(PlayerCharacter * player)
 	if (!bPickedUp) 
 	{
 		Pickup::Update(player);
-		if (bInRange)
+		if (bInRange && Keyboard::isKeyPressed(player->GetInteractKey()))
 		{
-			player->SetSuitTexture(sprtItem.getTexture());
+			player->SetSuit(sprtItem);
 			player->SetDefencePoints(defencePoints);
 			bPickedUp = true;
 		}

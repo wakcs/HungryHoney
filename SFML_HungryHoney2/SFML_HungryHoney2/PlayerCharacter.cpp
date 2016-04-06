@@ -4,10 +4,17 @@
 
 PlayerCharacter::PlayerCharacter()
 {
+	suitOffset = Vector2f(0, 0);
+	weaponOffset = Vector2f(0, 0);
+	iScore = 0;
 }
 PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position, Texture * suitTexture, Texture * weaponTexture, int maxSpeed, int healthPoints, int defencePoints, int damagePoints, int attackRange)
 	:Character(charachterTexture, position)
 {
+	suitOffset = Vector2f(0, 0);
+	weaponOffset = Vector2f(12, 0);
+	iScore = 0;
+
 	sprtSuit.setTexture(*suitTexture);
 	sprtWeapon.setTexture(*weaponTexture);
 	sprtSuit.setPosition(position + suitOffset);
@@ -26,7 +33,7 @@ PlayerCharacter::~PlayerCharacter()
 void PlayerCharacter::Update(vector<Character> *enemys)
 {
 	Move();
-	if (Mouse::isButtonPressed(mbShoot)) {
+	if (enemys != NULL && Mouse::isButtonPressed(mbShoot)) {
 		float smallestDistance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), enemys->front().sprtCharacter.getPosition());
 		int enemyInArray = 0;
 
@@ -57,17 +64,22 @@ int PlayerCharacter::GetScore()
 	return iScore;
 }
 
+Keyboard::Key PlayerCharacter::GetInteractKey()
+{
+	return kbInteract;
+}
+
 void PlayerCharacter::SetDefencePoints(int defencePoints)
 {
 	iDefencePoints = defencePoints;
 }
-void PlayerCharacter::SetSuitTexture(const Texture * suitTexture)
+void PlayerCharacter::SetSuit(Sprite suit)
 {
-	sprtSuit.setTexture(*suitTexture);
+	sprtSuit = suit;
 }
-void PlayerCharacter::SetWeaponTexture(const Texture * weaponTexture)
+void PlayerCharacter::SetWeapon( Sprite weapon)
 {
-	sprtWeapon.setTexture(*weaponTexture);
+	sprtWeapon = weapon;
 }
 void PlayerCharacter::SetScore(int score)
 {
@@ -104,8 +116,8 @@ void PlayerCharacter::Move()
 		velocity.x = 0;
 	}
 	Character::Move();
-	sprtSuit.move(velocity);
-	sprtWeapon.move(velocity);
+	sprtSuit.setPosition(sprtCharacter.getPosition() + suitOffset);
+	sprtWeapon.setPosition(sprtCharacter.getPosition() + weaponOffset);
 }
 void PlayerCharacter::GetHit(int damagePoints)
 {
