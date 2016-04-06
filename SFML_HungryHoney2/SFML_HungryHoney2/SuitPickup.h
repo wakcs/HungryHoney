@@ -1,0 +1,18 @@
+#pragma once
+#include "Pickup.h"
+class SuitPickup :
+	public Pickup
+{
+public:
+	SuitPickup();
+	SuitPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, int defencePoints);
+	~SuitPickup();
+
+	void Update();
+	void Draw(RenderWindow &window);
+
+private:
+	bool bPickedUp;
+	int defencePoints;
+};
+

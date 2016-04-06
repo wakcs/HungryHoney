@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pickup">
+      <UniqueIdentifier>{eb539a76-a69c-4493-8058-55b17887c77e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,6 +27,18 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pickup.h">
+      <Filter>Pickup</Filter>
+    </ClInclude>
+    <ClInclude Include="BeehivePickup.h">
+      <Filter>Pickup</Filter>
+    </ClInclude>
+    <ClInclude Include="SuitPickup.h">
+      <Filter>Pickup</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponPickup.h">
+      <Filter>Pickup</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -31,6 +46,18 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickup.cpp">
+      <Filter>Pickup</Filter>
+    </ClCompile>
+    <ClCompile Include="BeehivePickup.cpp">
+      <Filter>Pickup</Filter>
+    </ClCompile>
+    <ClCompile Include="SuitPickup.cpp">
+      <Filter>Pickup</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponPickup.cpp">
+      <Filter>Pickup</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
