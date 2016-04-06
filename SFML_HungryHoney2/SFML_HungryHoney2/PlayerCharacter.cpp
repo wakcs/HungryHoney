@@ -30,7 +30,7 @@ void PlayerCharacter::Update(vector<Character> *enemys)
 		float smallestDistance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), enemys->front().sprtCharacter.getPosition());
 		int enemyInArray = 0;
 
-		for (int i = 0; i < enemys->size; i++)
+		for (int i = 0; i < enemys->size(); i++)
 		{
 			float distance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), enemys->at(i).sprtCharacter.getPosition());
 			if (smallestDistance > distance) {

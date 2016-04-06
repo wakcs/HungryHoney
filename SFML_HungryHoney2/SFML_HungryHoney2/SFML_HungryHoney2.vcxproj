@@ -164,6 +164,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="SpriteExtender.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SuitPickup.h" />
     <ClInclude Include="targetver.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="SpriteExtender.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

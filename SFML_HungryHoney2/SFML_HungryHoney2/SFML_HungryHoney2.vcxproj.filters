@@ -57,6 +57,9 @@
     <ClInclude Include="Vector2Extender.h">
       <Filter>Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteExtender.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +90,9 @@
       <Filter>Character</Filter>
     </ClCompile>
     <ClCompile Include="Vector2Extender.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteExtender.cpp">
       <Filter>Extensions</Filter>
     </ClCompile>
   </ItemGroup>
