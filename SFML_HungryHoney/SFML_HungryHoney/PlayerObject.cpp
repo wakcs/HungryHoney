@@ -38,6 +38,7 @@ PlayerObject::~PlayerObject()
 void PlayerObject::UpdateObject()
 {
 	CharacterObject::UpdateObject();
+	suit.setPosition(objPosition + suitOffset);
 	if (Keyboard::isKeyPressed(kbUp)) {
 		objVelocity.y = -maxSpeed;
 	}
@@ -65,4 +66,19 @@ void PlayerObject::DrawObject(RenderWindow & window)
 	CharacterObject::DrawObject(window);
 	window.draw(suit);
 	window.draw(weapon);
+}
+
+void PlayerObject::CollisionDetect(CollidableObject * object)
+{
+	if (objCollider.intersects(object->objCollider)) {
+		cout << "oldPos" << objPosition.x << "," << objPosition.y << endl;;
+		if (Keyboard::isKeyPressed(kbUp) || Keyboard::isKeyPressed(kbDown) || fabs(objVelocity.y) > 0) {
+			objPosition.y = oldPosition.y;
+		}
+		if (Keyboard::isKeyPressed(kbLeft) || Keyboard::isKeyPressed(kbRight) || fabs(objVelocity.x) > 0) {
+			objPosition.x = oldPosition.x;
+		}
+		cout << "newPos" << objPosition.x << "," << objPosition.y << endl;;
+		objSprite.setPosition(objPosition);
+	}
 }

@@ -3,13 +3,6 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
 #include <SFML\System.hpp>
-#include <list>
-#include "GameObject.h"
-#include "CollidableObject.h"
-#include "PlayerObject.h"
-#include "BeeObject.h"
-#include "Beehive.h"
-#include "Hud.h"
 
 using namespace sf;
 using namespace std;

@@ -1,8 +1,7 @@
 #pragma once
-#include "CollidableObject.h"
-#include "PlayerObject.h"
+#include "InteractableObject.h"
 class Beehive :
-	public CollidableObject
+	public InteractableObject
 {
 public:
 	float interactRange;
@@ -14,17 +13,5 @@ public:
 	~Beehive();
 
 	void UpdateObject(PlayerObject* player);
-	void DrawObject(RenderWindow &window);
-
-protected:
-	Vector2u interactDimensions;
-
-private:
-	bool inRange;
-	int rnd = rand();
-	Clock clock;
-	Time waittime = Time(milliseconds(10));
-	bool changeX;
-	float rndX, rndY;
 };
 

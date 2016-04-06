@@ -4,15 +4,12 @@
 #include "stdafx.h"
 #include <Windows.h>
 #include <SFML\Graphics.hpp>
-/*#include "GameObject.h"
-#include "CollidableObject.h"
-#include "PlayerObject.h"
-#include "BeeObject.h"
-#include "Beehive.h"
-#include "Hud.h"
-#include <list>*/
 #include "Scene.h"
 #include "GameplayScene.h"
+#include <cctype>
+#include <fstream>
+#include <string>
+#include "MapLoader.h"
 
 using namespace sf;
 using namespace std;
@@ -24,6 +21,7 @@ const int frameLimit = 60;
 Scene::GameState gameState = Scene::GameState(Scene::GAMEPLAY);
 
 GameplayScene gameplay(&windowSize, &gameState);
+MapLoader myMap("Resources/firstMap.txt", 32);
 
 int main()
 {
@@ -44,7 +42,7 @@ int main()
 				window.close();
 		}
 		
-		switch (gameState)
+		/*switch (gameState)
 		{
 		case Scene::MAINMENU:
 			break;
@@ -60,7 +58,10 @@ int main()
 			break;
 		default:
 			break;
-		}
+		}*/
+		window.clear();
+		myMap.DrawMap(window);
+		window.display();
 	}
     return 0;
 }

@@ -27,20 +27,7 @@ void CollidableObject::CollisionDetect(CollidableObject* object)
 {
 	if (objCollider.intersects(object->objCollider))
 	{
-		/*if (fabs(objVelocity.x) > 0) {
-			objVelocity.x = 0;
-			objPosition = Vector2f(oldPosition.x, objPosition.y);
-			objSprite.setPosition(objPosition);
-		}
-		if (fabs(objVelocity.y) > 0) {
-			objVelocity.y = 0;
-			objPosition = Vector2f(objPosition.x, oldPosition.y);
-			objSprite.setPosition(objPosition);
-		}
-		if (fabs(objVelocity.x) > 0 && fabs(objVelocity.y) > 0) {
-			objVelocity = Vector2f(0, 0);
-			objPosition = oldPosition;
-			objSprite.setPosition(objPosition);
-		}*/
+		Vector2f direction = Vector2Extender::NormalizeVector(objPosition, object->objPosition);
+		objVelocity = Vector2f(-(direction.x*objVelocity.x), -(direction.y*objVelocity.y));
 	}
 }

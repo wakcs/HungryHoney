@@ -18,5 +18,6 @@ public:
 
 	void UpdateObject();
 	void DrawObject(RenderWindow& window);
+	void CollisionDetect(CollidableObject* object);
 };
 

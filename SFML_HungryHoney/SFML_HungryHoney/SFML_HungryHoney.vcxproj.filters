@@ -22,6 +22,12 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{962a733d-f6c9-4d91-8759-47239b040adc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\Interactable">
+      <UniqueIdentifier>{7ada2223-5806-46d1-954d-8da57a62db9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Characters">
+      <UniqueIdentifier>{2f7028c8-dd65-41a4-851d-8ad79cd677a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,22 +42,10 @@
     <ClInclude Include="Vector2Extender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="CollidableObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="BeeObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Beehive.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Hud.h">
@@ -69,6 +63,30 @@
     <ClInclude Include="ButtonObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Beehive.h">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractableObject.h">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterObject.h">
+      <Filter>GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="BeeObject.h">
+      <Filter>GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="SuitObject.h">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponObject.h">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -80,22 +98,10 @@
     <ClCompile Include="Vector2Extender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Beehive.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="BeeObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="CollidableObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Hud.cpp">
@@ -112,6 +118,30 @@
     </ClCompile>
     <ClCompile Include="ButtonObject.cpp">
       <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Beehive.cpp">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractableObject.cpp">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterObject.cpp">
+      <Filter>GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="BeeObject.cpp">
+      <Filter>GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="SuitObject.cpp">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponObject.cpp">
+      <Filter>GameObjects\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="MapLoader.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
