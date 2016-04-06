@@ -8,7 +8,7 @@ public:
 	SuitPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, int defencePoints);
 	~SuitPickup();
 
-	void Update();
+	void Update(PlayerCharacter * player);
 	void Draw(RenderWindow &window);
 
 private:

@@ -52,18 +52,34 @@ int PlayerCharacter::GetDefencePoints()
 {
 	return iDefencePoints;
 }
+int PlayerCharacter::GetScore()
+{
+	return iScore;
+}
 
 void PlayerCharacter::SetDefencePoints(int defencePoints)
 {
 	iDefencePoints = defencePoints;
 }
-void PlayerCharacter::SetSuitTexture(Texture * suitTexture)
+void PlayerCharacter::SetSuitTexture(const Texture * suitTexture)
 {
 	sprtSuit.setTexture(*suitTexture);
 }
-void PlayerCharacter::SetWeaponTexture(Texture * weaponTexture)
+void PlayerCharacter::SetWeaponTexture(const Texture * weaponTexture)
 {
 	sprtWeapon.setTexture(*weaponTexture);
+}
+void PlayerCharacter::SetScore(int score)
+{
+	iScore = score;
+}
+void PlayerCharacter::AddScore(int points)
+{
+	iScore += points;
+}
+void PlayerCharacter::SubtractScore(int points)
+{
+	iScore -= points;
 }
 
 void PlayerCharacter::Move()

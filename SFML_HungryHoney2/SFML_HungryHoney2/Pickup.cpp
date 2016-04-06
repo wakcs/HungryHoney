@@ -20,9 +20,10 @@ Pickup::~Pickup()
 {
 }
 
-void Pickup::Update()
+void Pickup::Update(PlayerCharacter * player)
 {
-	if (0 > 1)
+	float distance = Vector2Extender::NormalizeFloat(sprtItem.getPosition(), player->sprtCharacter.getPosition());
+	if (distance < iPickupRange)
 	{
 		bInRange = true;
 	}

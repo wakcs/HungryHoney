@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-
+#include "PlayerCharacter.h"
 using namespace sf;
 using namespace std;
 
@@ -11,7 +11,7 @@ public:
 	Pickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange);
 	~Pickup();
 
-	void Update();
+	void Update(PlayerCharacter * player);
 	void Draw(RenderWindow& window);
 
 protected:

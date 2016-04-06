@@ -18,16 +18,16 @@ WeaponPickup::~WeaponPickup()
 {
 }
 
-void WeaponPickup::Update()
+void WeaponPickup::Update(PlayerCharacter * player)
 {
 	if (!bPickedUp) 
 	{
-		Pickup::Update();
+		Pickup::Update(player);
 		if (bInRange) 
 		{
-			//set weapon texture
-			//set damagepoints
-			//set attackrange
+			player->SetWeaponTexture(sprtItem.getTexture());
+			player->SetDamagePoints(damagePoints);
+			player->SetAttackRange(attackRange);
 			bPickedUp = true;
 		}
 	}

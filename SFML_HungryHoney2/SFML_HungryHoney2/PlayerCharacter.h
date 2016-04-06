@@ -15,14 +15,18 @@ public:
 
 	//getters
 	int GetDefencePoints();
+	int GetScore();
 
 	//setters
 	void SetDefencePoints(int defencePoints);
-	void SetSuitTexture(Texture* suitTexture);
-	void SetWeaponTexture(Texture* weaponTexture);
+	void SetSuitTexture(const Texture* suitTexture);
+	void SetWeaponTexture(const Texture* weaponTexture);
+	void SetScore(int score);
+	void AddScore(int points);
+	void SubtractScore(int points);
 	
 private:
-	int iDefencePoints;
+	int iDefencePoints, iScore;
 	Sprite sprtSuit, sprtWeapon;
 	Vector2f suitOffset = Vector2f(0, 0);
 	Vector2f weaponOffset = Vector2f(8, 0);

@@ -5,12 +5,13 @@ class BeehivePickup :
 {
 public:
 	BeehivePickup();
-	BeehivePickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, Vector2f spawnArea);
+	BeehivePickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, Vector2i spawnArea);
 	~BeehivePickup();
 
-	void Update();
+	void Update(PlayerCharacter* player);
 
 private:
-	Vector2f spawnArea;
+	Vector2i spawnArea;
+	int iPoints = 10;
 };
 

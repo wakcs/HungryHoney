@@ -18,15 +18,15 @@ SuitPickup::~SuitPickup()
 {
 }
 
-void SuitPickup::Update()
+void SuitPickup::Update(PlayerCharacter * player)
 {
 	if (!bPickedUp) 
 	{
-		Pickup::Update();
+		Pickup::Update(player);
 		if (bInRange)
 		{
-			//set suit texture
-			//set defence points
+			player->SetSuitTexture(sprtItem.getTexture());
+			player->SetDefencePoints(defencePoints);
 			bPickedUp = true;
 		}
 	}
