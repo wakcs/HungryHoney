@@ -16,6 +16,12 @@
     <Filter Include="Pickup">
       <UniqueIdentifier>{eb539a76-a69c-4493-8058-55b17887c77e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{53e12c10-0a66-49db-a8aa-18103acaad74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extensions">
+      <UniqueIdentifier>{7441ebad-700a-44f1-a8af-cf93ad6b7db8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,6 +45,18 @@
     <ClInclude Include="WeaponPickup.h">
       <Filter>Pickup</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="BeeCharacter.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCharacter.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2Extender.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -58,6 +76,18 @@
     </ClCompile>
     <ClCompile Include="WeaponPickup.cpp">
       <Filter>Pickup</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCharacter.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="BeeCharacter.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2Extender.cpp">
+      <Filter>Extensions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

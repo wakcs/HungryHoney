@@ -159,17 +159,24 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BeeCharacter.h" />
     <ClInclude Include="BeehivePickup.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Pickup.h" />
+    <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SuitPickup.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Vector2Extender.h" />
     <ClInclude Include="WeaponPickup.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BeeCharacter.cpp" />
     <ClCompile Include="BeehivePickup.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pickup.cpp" />
+    <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -177,6 +184,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SuitPickup.cpp" />
+    <ClCompile Include="Vector2Extender.cpp" />
     <ClCompile Include="WeaponPickup.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
