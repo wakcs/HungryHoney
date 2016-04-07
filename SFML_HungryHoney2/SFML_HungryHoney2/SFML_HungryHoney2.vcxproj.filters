@@ -22,6 +22,12 @@
     <Filter Include="Extensions">
       <UniqueIdentifier>{7441ebad-700a-44f1-a8af-cf93ad6b7db8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{e3bc0d70-25ba-45bb-907f-4f6899fcc98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{0bb7ad0b-2b9e-410c-9294-74e4d9036eb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,6 +66,9 @@
     <ClInclude Include="SpriteExtender.h">
       <Filter>Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -94,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="SpriteExtender.cpp">
       <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

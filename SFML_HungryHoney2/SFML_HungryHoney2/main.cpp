@@ -12,6 +12,7 @@
 #include "SuitPickup.h"
 #include "WeaponPickup.h"
 #include "BeehivePickup.h"
+#include "HUD.h"
 
 using namespace sf;
 using namespace std;
@@ -19,9 +20,10 @@ using namespace std;
 const Vector2i windowSize(800, 600);
 const string dirSprite = "D:/GitHub/HungryHoney/SFML_HungryHoney2/Debug/Resources/Sprites/", dirLevel = "D:/GitHub/HungryHoney/SFML_HungryHoney2/Debug/Resources/Levels/", dirFont = "D:/GitHub/HungryHoney/SFML_HungryHoney2/Debug/Resources/Fonts/";
 
-Texture txtrBackground1, txtrBackground2, txtrPlayer, txtrBee, txtrSuit, txtrWeapon, txtrHive, txtrInteract, txtrHealth;
-float beeSpeed = 0.5f, beeHP = 4, beeDamP = 2, beeAttackRange = 32, beePursuitRange = 160;
-float plrSpeed = 2, plrHP = 10, plrDefP = 0, plrDamP = 0.5f, plrAttackRange = 16;
+Texture txtrBackground1, txtrBackground2, txtrPlayer, txtrBee, txtrSuit, txtrWeapon, txtrHive, txtrInteract, txtrHealthBar, txtrHealth, txtrShield;
+Font fontHud;
+float beeSpeed = 1, beeHP = 40, beeDamP = 20, beeAttackRange = 32, beePursuitRange = 160;
+float plrSpeed = 2, plrHP = 100, plrDefP = 0, plrDamP = 5, plrAttackRange = 16;
 Sprite sprtBackground;
 PlayerCharacter pcPlayer;
 vector<Character*> bees;
@@ -30,9 +32,8 @@ BeeCharacter bcBee1, bcBee2, bcBee3, bcBee4, bcBee5, bcBee6;
 SuitPickup spBathRobe;
 WeaponPickup wpSmoker;
 BeehivePickup bpHive;
+HUD mainHud;
 
-Font hudFont;
-Text txtScore;
 void SpawnBee(int beeCount);
 
 int main()
@@ -59,10 +60,10 @@ int main()
 	//pickups
 	if (txtrInteract.loadFromFile(dirSprite + "letter_E_small.png")) {
 		if (txtrSuit.loadFromFile(dirSprite + "bathrobe.png")) {
-			spBathRobe = SuitPickup(&txtrSuit, &txtrInteract, Vector2f(windowSize.x / 2 + 100, windowSize.y / 2), 20, 0.5f);
+			spBathRobe = SuitPickup(&txtrSuit, &txtrInteract, Vector2f(windowSize.x / 2 + 100, windowSize.y / 2), 20, 5);
 		}
 		if (txtrWeapon.loadFromFile(dirSprite + "smoker.png")) {
-			wpSmoker = WeaponPickup(&txtrWeapon, &txtrInteract, Vector2f(windowSize.x / 2, windowSize.y / 2-100), 20, 2, 40);
+			wpSmoker = WeaponPickup(&txtrWeapon, &txtrInteract, Vector2f(windowSize.x / 2, windowSize.y / 2-100), 20, 20, 40);
 		}
 		if (txtrHive.loadFromFile(dirSprite + "chest.png")) {
 			bpHive = BeehivePickup(&txtrHive, &txtrInteract, Vector2f(windowSize.x / 2 - 100, windowSize.y / 2), 30, Vector2i(100, 100));
@@ -70,25 +71,24 @@ int main()
 	}
 
 	//hud
-	if (hudFont.loadFromFile(dirFont + "kenpixel_square.ttf")) {
-		txtScore.setFont(hudFont);
-		txtScore.setPosition(windowSize.x / 2 - 100, windowSize.y / 2 - 200);
+	if (txtrHealth.loadFromFile(dirSprite + "health.png") && txtrShield.loadFromFile(dirSprite + "shield.png") && fontHud.loadFromFile(dirFont + "kenpixel_square.ttf")) {
+		mainHud = HUD(&pcPlayer, &mainView, 60, &txtrHealth, &txtrShield, &fontHud);
 	}
 
 	//bee
 	if (txtrBee.loadFromFile(dirSprite + "bee.png")) {
-		txtrHealth.loadFromFile(dirSprite + "healthbar.png");
-		bcBee1 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealth);
+		txtrHealthBar.loadFromFile(dirSprite + "healthbar.png");
+		bcBee1 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealthBar);
 		bees.push_back(&bcBee1);
-		bcBee2 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealth);
+		bcBee2 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealthBar);
 		bees.push_back(&bcBee2);
-		bcBee3 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealth);
+		bcBee3 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealthBar);
 		bees.push_back(&bcBee3);
-		bcBee4 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealth);
+		bcBee4 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealthBar);
 		bees.push_back(&bcBee4);
-		bcBee5 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealth);
+		bcBee5 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealthBar);
 		bees.push_back(&bcBee5);
-		bcBee6 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealth);
+		bcBee6 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(windowSize, false), beeSpeed, beeHP, beeDamP, beeAttackRange, beePursuitRange, &txtrHealthBar);
 		bees.push_back(&bcBee6);
 	}
 	while (window.isOpen()) 
@@ -107,11 +107,9 @@ int main()
 		spBathRobe.Update(&pcPlayer);
 		wpSmoker.Update(&pcPlayer);
 		bpHive.Update(&pcPlayer);
-		txtScore.setString("Score: " + to_string(pcPlayer.GetScore()));
-		if (Keyboard::isKeyPressed(Keyboard::Key::Y)) {
-			sprtBackground.setTexture(txtrBackground2);
-		}
 		mainView.setCenter(SpriteExtender::GetCenter(&pcPlayer.sprtCharacter));
+		mainHud.Update();
+
 		window.clear();
 		window.draw(sprtBackground);
 		bpHive.Draw(window);
@@ -124,7 +122,7 @@ int main()
 			bee->Draw(window);
 		}
 		window.setView(mainView);
-		window.draw(txtScore);
+		mainHud.Draw(window);
 		window.display();
 	}
     return 0;

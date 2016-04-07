@@ -162,6 +162,7 @@
     <ClInclude Include="BeeCharacter.h" />
     <ClInclude Include="BeehivePickup.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SpriteExtender.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="BeeCharacter.cpp" />
     <ClCompile Include="BeehivePickup.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />

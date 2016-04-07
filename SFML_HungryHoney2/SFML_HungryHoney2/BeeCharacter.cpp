@@ -85,7 +85,7 @@ void BeeCharacter::Attack(PlayerCharacter * player)
 
 void BeeCharacter::SetHealthbar()
 {
-	sprtHealthBar.setScale(fHealthPoints*healthbarScale, healthbarScale);
+	sprtHealthBar.setScale(fHealthPoints*healthbarScale/10, healthbarScale);
 	Vector2f position = sprtCharacter.getPosition();
 	position.y -= sprtHealthBar.getLocalBounds().height;
 	position.x += (sprtCharacter.getLocalBounds().width / 2) - (sprtHealthBar.getLocalBounds().width / 2);
