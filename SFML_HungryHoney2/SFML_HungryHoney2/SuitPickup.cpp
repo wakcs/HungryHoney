@@ -8,7 +8,7 @@ SuitPickup::SuitPickup()
 	bPickedUp = false;
 }
 
-SuitPickup::SuitPickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, int defencePoints)
+SuitPickup::SuitPickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, float defencePoints)
 	:Pickup(itemTexture,InteractTexture,position,pickupRange)
 {
 	SuitPickup::defencePoints = defencePoints;

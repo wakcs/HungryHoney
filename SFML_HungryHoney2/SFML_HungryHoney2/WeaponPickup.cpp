@@ -7,7 +7,7 @@ WeaponPickup::WeaponPickup()
 	bPickedUp = false;
 }
 
-WeaponPickup::WeaponPickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, int damagePoints, int attackRange)
+WeaponPickup::WeaponPickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, float damagePoints, float attackRange)
 	:Pickup(itemTexture, InteractTexture, position, pickupRange)
 {
 	WeaponPickup::damagePoints = damagePoints;

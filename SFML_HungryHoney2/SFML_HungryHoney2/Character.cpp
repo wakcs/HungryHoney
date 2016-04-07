@@ -14,42 +14,53 @@ Character::~Character()
 {
 }
 
-int Character::GetMaxSpeed()
+float Character::GetMaxSpeed()
 {
-	return iMaxSpeed;
+	return fMaxSpeed;
 }
-int Character::GetHealthPoints()
+float Character::GetHealthPoints()
 {
-	return iHealthPoints;
+	return fHealthPoints;
 }
-int Character::GetDamagePoints()
+float Character::GetDamagePoints()
 {
-	return iDamagePoints;
+	return fDamagePoints;
 }
-int Character::GetAttackRange()
+float Character::GetAttackRange()
 {
-	return iAttackRange;
+	return fAttackRange;
 }
 
-void Character::SetMaxSpeed(int maxSpeed)
+bool Character::GetDeathState()
 {
-	iMaxSpeed = maxSpeed;
+	return bIsDeath;
 }
-void Character::SetHealthPoints(int healthPoints)
+
+void Character::SetMaxSpeed(float maxSpeed)
 {
-	iHealthPoints = healthPoints;
+	fMaxSpeed = maxSpeed;
 }
-void Character::SetDamagePoints(int damagePoints)
+void Character::SetHealthPoints(float healthPoints)
 {
-	iDamagePoints = damagePoints;
+	fHealthPoints = healthPoints;
 }
-void Character::SetAttackRange(int attackRange)
+void Character::SetDamagePoints(float damagePoints)
 {
-	iAttackRange = attackRange;
+	fDamagePoints = damagePoints;
+}
+void Character::SetAttackRange(float attackRange)
+{
+	fAttackRange = attackRange;
 }
 
 void Character::Update()
 {
+	if (fHealthPoints <= 0) {
+		bIsDeath = true;
+	}
+	else {
+		bIsDeath = false;
+	}
 }
 void Character::Draw(RenderWindow & window)
 {
@@ -63,12 +74,13 @@ void Character::Move()
 void Character::Attack(Character * character)
 {
 	float distance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), character->sprtCharacter.getPosition());
-	if (distance < iAttackRange && attackCounter.getElapsedTime().asMilliseconds() > attackTimer.asMilliseconds()) {
-		character->GetHit(iDamagePoints);
+	if (distance < fAttackRange && attackCounter.getElapsedTime().asMilliseconds() > attackTimer.asMilliseconds()) {
+		character->GetHit(fDamagePoints);
 		attackCounter.restart();
 	}
 }
-void Character::GetHit(int damagePoints)
+void Character::GetHit(float damagePoints)
 {
-	iHealthPoints -= damagePoints;
+	fHealthPoints -= damagePoints;
+	cout << "Character hit, current HP: " << fHealthPoints << endl;
 }

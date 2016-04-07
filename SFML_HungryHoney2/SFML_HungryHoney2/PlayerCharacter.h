@@ -6,28 +6,28 @@ class PlayerCharacter :
 {
 public:
 	PlayerCharacter();
-	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, int maxSpeed, int healthPoints, int defencePoints, int damagePoints, int attackRange);
+	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange);
 	~PlayerCharacter();
 
 	//called in the update
-	void Update(vector<Character> *enemys);
+	void Update(vector<Character*> enemys);
 	void Draw(RenderWindow&window);
 
 	//getters
-	int GetDefencePoints();
-	int GetScore();
+	float GetDefencePoints();
+	float GetScore();
 	Keyboard::Key GetInteractKey();
 
 	//setters
-	void SetDefencePoints(int defencePoints);
+	void SetDefencePoints(float defencePoints);
 	void SetSuit(Sprite suit);
 	void SetWeapon(Sprite weapon);
-	void SetScore(int score);
-	void AddScore(int points);
-	void SubtractScore(int points);
+	void SetScore(float score);
+	void AddScore(float points);
+	void SubtractScore(float points);
 	
 private:
-	int iDefencePoints, iScore;
+	float fDefencePoints, fScore;
 	Sprite sprtSuit, sprtWeapon;
 	Vector2f suitOffset;
 	Vector2f weaponOffset;
@@ -41,6 +41,6 @@ private:
 	Mouse::Button mbShoot = Mouse::Button::Left;
 
 	void Move();
-	void GetHit(int damagePoints);
+	void GetHit(float damagePoints);
 };
 

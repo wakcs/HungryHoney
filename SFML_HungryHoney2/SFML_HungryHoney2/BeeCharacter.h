@@ -7,16 +7,22 @@ class BeeCharacter :
 {
 public:
 	BeeCharacter();
-	BeeCharacter(Texture* charachterTexture, Vector2f position);
-	~BeeCharacter();
+	BeeCharacter(Texture* charachterTexture, Vector2f position, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healhtbarTexture);
+	virtual ~BeeCharacter();
 
 	//called in the update
-	void Update(PlayerCharacter * player);
+	virtual void Update(PlayerCharacter * player);
+	virtual void Draw(RenderWindow & window);
 
 private:
-	float fPursuitRange, fAngle = 1;
-	Vector2f circlePos, center;
+	//fMaxAngle is a rough estimate and changes according the fRadius
+	float fPursuitRange, fConstAngle = 0.03f, fAngle = 0, fMaxAngle=6.25f, fRadius = 20, healthbarScale;
+	Vector2f center;
+	Sprite sprtHealthBar;
 
-	void Move(PlayerCharacter * player);
+	virtual void Move(PlayerCharacter * player);
+	virtual void Attack(PlayerCharacter * player);
+
+	void SetHealthbar();
 };
 

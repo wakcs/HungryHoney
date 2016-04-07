@@ -5,7 +5,7 @@ class SuitPickup :
 {
 public:
 	SuitPickup();
-	SuitPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, int defencePoints);
+	SuitPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, float defencePoints);
 	~SuitPickup();
 
 	void Update(PlayerCharacter * player);
@@ -13,6 +13,6 @@ public:
 
 private:
 	bool bPickedUp;
-	int defencePoints;
+	float defencePoints;
 };
 

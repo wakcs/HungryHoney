@@ -5,7 +5,7 @@ class WeaponPickup :
 {
 public:
 	WeaponPickup();
-	WeaponPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, int damagePoints, int attackRange);
+	WeaponPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, float damagePoints, float attackRange);
 	~WeaponPickup();
 
 	void Update(PlayerCharacter* player);
@@ -13,6 +13,6 @@ public:
 
 private:
 	bool bPickedUp;
-	int damagePoints, attackRange;
+	float damagePoints, attackRange;
 };
 

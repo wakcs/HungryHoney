@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <iostream>
 #include "Vector2Extender.h"
 
 using namespace sf;
@@ -12,26 +13,28 @@ public:
 
 	Character();
 	Character(Texture* charachterTexture, Vector2f position);
-	~Character();
+	virtual ~Character();
 
 	//called in the update
-	void Update();
-	void Draw(RenderWindow&window);
+	virtual void Update();
+	virtual void Draw(RenderWindow&window);
 
 	//getters
-	int GetMaxSpeed();
-	int GetHealthPoints();
-	int GetDamagePoints();
-	int GetAttackRange();
+	virtual float GetMaxSpeed();
+	virtual float GetHealthPoints();
+	virtual float GetDamagePoints();
+	virtual float GetAttackRange();
+	virtual bool GetDeathState();
 
 	//setters
-	void SetMaxSpeed(int maxSpeed);
-	void SetHealthPoints(int healthPoints);
-	void SetDamagePoints(int damagePoints);
-	void SetAttackRange(int attackRange);
+	virtual void SetMaxSpeed(float maxSpeed);
+	virtual void SetHealthPoints(float healthPoints);
+	virtual void SetDamagePoints(float damagePoints);
+	virtual void SetAttackRange(float attackRange);
 
 protected:
-	int iMaxSpeed = 0, iHealthPoints = 0, iDamagePoints = 0, iAttackRange = 0;
+	float fMaxSpeed = 0, fHealthPoints = 0, fDamagePoints = 0, fAttackRange = 0;
+	bool bIsDeath = false;
 	Vector2f velocity;
 
 	//attackdelay
@@ -39,8 +42,8 @@ protected:
 	Time attackTimer = Time(seconds(0));
 
 	//special actions
-	void Move();
-	void Attack(Character* character);
-	void GetHit(int damagePoints);
+	virtual void Move();
+	virtual void Attack(Character* character);
+	virtual void GetHit(float damagePoints);
 };
 
