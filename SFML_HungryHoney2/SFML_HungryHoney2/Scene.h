@@ -1,10 +1,11 @@
 #pragma once
 #include <Windows.h>
+#include <iostream>
 #include <SFML\Audio.hpp>
 #include <SFML\Graphics.hpp>
 #include <SFML\System.hpp>
 #include "Vector2Extender.h"
-#include "SpriteExtender.h"
+#include "TransformableExtender.h"
 
 using namespace sf;
 using namespace std;

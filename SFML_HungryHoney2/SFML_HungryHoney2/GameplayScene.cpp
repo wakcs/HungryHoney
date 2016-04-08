@@ -34,7 +34,7 @@ bool GameplayScene::Initialize()
 	}
 
 	sprtBackground.setTexture(txtrBackground);
-	sprtBackground.setPosition(SpriteExtender::SetCenter(&sprtBackground, 0, 0));
+	sprtBackground.setPosition(TransformableExtender::SetCenter(&sprtBackground, 0, 0));
 
 	//Player
 	player = PlayerCharacter(&txtrPlayer, Vector2f(0, 0), NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
@@ -86,7 +86,7 @@ void GameplayScene::Update()
 		beeTimer.restart();
 	}
 	player.Update(bees);
-	mainView.setCenter(SpriteExtender::GetCenter(&player.sprtCharacter));
+	mainView.setCenter(TransformableExtender::GetCenter(&player.sprtCharacter));
 	mainHud.Update();
 }
 

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include "GameplayScene.h"
+#include "MainMenuScene.h"
 
 using namespace sf;
 using namespace std;
@@ -13,15 +14,16 @@ using namespace std;
 Vector2i windowSize(800, 600);
 const int frameLimit = 60;
 
-Scene::GameState state(Scene::GAMEPLAY);
+Scene::GameState state(Scene::MAINMENU);
 GameplayScene gameplay(&state, &windowSize);
+MainMenuScene mainMenu(&state, &windowSize);
 
 int main()
 {
-	if (gameplay.Initialize())
+	if (gameplay.Initialize() && mainMenu.Initialize())
 	{
 	//Uncomment if you want to hide the console window
-	FreeConsole();
+	//FreeConsole();
 
 	//creates the window where te magic happens
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Hungry Honey - By Geert Cocu");
@@ -32,12 +34,14 @@ int main()
 			sf::Event event;
 			while (window.pollEvent(event))
 			{
-				if (event.type == sf::Event::Closed)
+				if (event.type == Event::Closed)
 					window.close();
 			}
 			switch (state)
 			{
 			case Scene::MAINMENU:
+				mainMenu.Update(window);
+				mainMenu.Draw(window);
 				break;
 			case Scene::CONTROLS:
 				break;

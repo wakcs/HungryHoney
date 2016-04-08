@@ -63,9 +63,6 @@
     <ClInclude Include="Vector2Extender.h">
       <Filter>Extensions</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteExtender.h">
-      <Filter>Extensions</Filter>
-    </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Interface</Filter>
     </ClInclude>
@@ -73,7 +70,16 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="GameplayScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableExtender.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +113,6 @@
     <ClCompile Include="Vector2Extender.cpp">
       <Filter>Extensions</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteExtender.cpp">
-      <Filter>Extensions</Filter>
-    </ClCompile>
     <ClCompile Include="HUD.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
@@ -117,7 +120,16 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="GameplayScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformableExtender.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

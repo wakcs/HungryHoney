@@ -164,10 +164,12 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="MenuButton.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SpriteExtender.h" />
+    <ClInclude Include="TransformableExtender.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SuitPickup.h" />
     <ClInclude Include="targetver.h" />
@@ -181,10 +183,12 @@
     <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SpriteExtender.cpp" />
+    <ClCompile Include="TransformableExtender.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
