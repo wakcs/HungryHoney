@@ -8,15 +8,18 @@ PlayerCharacter::PlayerCharacter()
 	weaponOffset = Vector2f(0, 0);
 	fScore = 0;
 }
-PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position, Texture * suitTexture, Texture * weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange)
+PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position, Texture * suitTexture, Texture * weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange, FloatRect playBorder)
 	:Character(charachterTexture, position)
 {
 	suitOffset = Vector2f(0, 0);
 	weaponOffset = Vector2f(12, 0);
 	fScore = 0;
-
-	sprtSuit.setTexture(*suitTexture);
-	sprtWeapon.setTexture(*weaponTexture);
+	if (suitTexture != NULL) {
+		sprtSuit.setTexture(*suitTexture);
+	}
+	if (weaponTexture != NULL) {
+		sprtWeapon.setTexture(*weaponTexture);
+	}
 	sprtSuit.setPosition(position + suitOffset);
 	sprtWeapon.setPosition(position + weaponOffset);
 
@@ -26,7 +29,8 @@ PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position,
 	PlayerCharacter::fDamagePoints = damagePoints;
 	PlayerCharacter::fAttackRange = attackRange;
 
-	attackTimer = Time(seconds(1));
+	attackTimer = Time(seconds(1)); 
+	PlayerCharacter::playBorder = playBorder;
 }
 PlayerCharacter::~PlayerCharacter()
 {
@@ -37,18 +41,10 @@ void PlayerCharacter::Update(vector<Character*> enemys)
 	Character::Update();
 	Move();
 	if (Mouse::isButtonPressed(mbShoot)) {
-		float smallestDistance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), enemys.front()->sprtCharacter.getPosition());
-		int enemyInArray = 0;
-
 		for (int i = 0; i < enemys.size(); i++)
 		{
-			float distance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), enemys.at(i)->sprtCharacter.getPosition());
-			if (smallestDistance > distance) {
-				smallestDistance = distance;
-				enemyInArray = i;
-			}
+			Attack(enemys.at(i));
 		}
-		Attack(enemys.at(enemyInArray));
 	}
 }
 void PlayerCharacter::Draw(RenderWindow & window)
@@ -99,20 +95,22 @@ void PlayerCharacter::SubtractScore(float points)
 
 void PlayerCharacter::Move()
 {
-	if (Keyboard::isKeyPressed(kbUp)) {
+	Vector2f charPos = sprtCharacter.getPosition();
+	if (Keyboard::isKeyPressed(kbUp) && charPos.y > playBorder.top)
+	{
 		velocity.y = -fMaxSpeed;
 	}
-	else if (Keyboard::isKeyPressed(kbDown)) {
+	else if (Keyboard::isKeyPressed(kbDown) && charPos.y < playBorder.top + playBorder.height) {
 		velocity.y = fMaxSpeed;
 	}
 	else {
 		velocity.y = 0;
 	}
 
-	if (Keyboard::isKeyPressed(kbLeft)) {
+	if (Keyboard::isKeyPressed(kbLeft) && charPos.x > playBorder.left) {
 		velocity.x = -fMaxSpeed;
 	}
-	else if (Keyboard::isKeyPressed(kbRight)) {
+	else if (Keyboard::isKeyPressed(kbRight) && charPos.x < playBorder.left + playBorder.width) {
 		velocity.x = fMaxSpeed;
 	}
 	else {

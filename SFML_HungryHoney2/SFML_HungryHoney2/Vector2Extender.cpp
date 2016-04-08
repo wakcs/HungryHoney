@@ -47,15 +47,45 @@ Vector2f Vector2Extender::RandomVectorCoords(Vector2i bounds, bool center)
 			{
 				rndX = (rnd % bounds.x);
 				if (center) {
-					rndX = rndX - (bounds.x / 2);
+					rndX -= (bounds.x / 2);
 				}
 			}
 			else 
 			{
 				rndY = (rnd % bounds.y);
 				if (center) {
-					rndY = rndY - (bounds.y / 2);
+					rndY -= (bounds.y / 2);
 				}
+			}
+			changeX = !changeX;
+			clock.restart();
+		}
+	}
+	return Vector2f(rndX, rndY);
+}
+
+Vector2f Vector2Extender::RandomVectorCoords(FloatRect bounds)
+{
+	const int delay = 2;
+	int rnd;
+	Clock clock;
+	Time waittime = Time(milliseconds(delay));
+	bool changeX = false;
+	int rndX = 0, rndY = 0;
+
+	while (rndX == 0 || rndY == 0)
+	{
+		if (clock.getElapsedTime().asMilliseconds() > waittime.asMilliseconds()) {
+			rnd = rand();
+			if (changeX)
+			{
+				rndX = (rnd % (int)bounds.width);
+				rndX += bounds.left;
+			}
+			else
+			{
+				rndY = (rnd % (int)bounds.height);
+				rndY += bounds.top;
 			}
 			changeX = !changeX;
 			clock.restart();

@@ -11,14 +11,16 @@ BeeCharacter::BeeCharacter()
 	fAttackRange = 0;
 	healthbarScale = 1;
 }
-BeeCharacter::BeeCharacter(Texture * charachterTexture, Vector2f position, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healthbarTexture)
+BeeCharacter::BeeCharacter(Texture * charachterTexture, Vector2f position, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healthbarTexture, FloatRect spawnArea)
 	:Character(charachterTexture, position)
 {
 	fMaxSpeed = maxSpeed;
+	fConstAngle = maxSpeed / 10;
 	fHealthPoints = healthPoints;
 	fDamagePoints = damagePoints;
 	fAttackRange = attackRange;
 	fPursuitRange = pursuitRange;
+	oldPos = position;
 	center = Vector2f(position.x,position.y-fRadius);
 	attackTimer = Time(seconds(3));
 	if (healthbarTexture != NULL) {
@@ -26,6 +28,9 @@ BeeCharacter::BeeCharacter(Texture * charachterTexture, Vector2f position, float
 		sprtHealthBar.setTexture(*healthbarTexture);
 		SetHealthbar();
 	}
+
+	fMaxHP = healthPoints;
+	BeeCharacter::respawnArea = spawnArea;
 }
 BeeCharacter::~BeeCharacter()
 {
@@ -34,7 +39,6 @@ BeeCharacter::~BeeCharacter()
 void BeeCharacter::Update(PlayerCharacter * player)
 {
 	Character::Update();
-	if (!bIsDeath) {
 		float distance = Vector2Extender::NormalizeFloat(sprtCharacter.getPosition(), player->sprtCharacter.getPosition());
 		if (distance < fAttackRange) {
 			velocity = Vector2f(0, 0);
@@ -43,15 +47,21 @@ void BeeCharacter::Update(PlayerCharacter * player)
 		else {
 			Move(player);
 		}
-	}
 	SetHealthbar();
+	if (bIsDeath) {
+		Vector2f newPos = Vector2Extender::RandomVectorCoords(respawnArea);
+		if (newPos != oldPos) {
+			fHealthPoints = fMaxHP;
+			sprtCharacter.setPosition(newPos);
+			oldPos = newPos;
+			bIsDeath = false;
+		}
+	}
 }
 void BeeCharacter::Draw(RenderWindow & window)
 {
-	if (!bIsDeath) {
-		Character::Draw(window);
-		window.draw(sprtHealthBar);
-	}
+	Character::Draw(window);
+	window.draw(sprtHealthBar);
 }
 void BeeCharacter::Move(PlayerCharacter * player)
 {

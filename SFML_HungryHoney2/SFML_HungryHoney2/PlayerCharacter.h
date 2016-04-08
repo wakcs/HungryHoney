@@ -6,7 +6,7 @@ class PlayerCharacter :
 {
 public:
 	PlayerCharacter();
-	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange);
+	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange, FloatRect playBorder);
 	~PlayerCharacter();
 
 	//called in the update
@@ -29,8 +29,8 @@ public:
 private:
 	float fDefencePoints, fScore;
 	Sprite sprtSuit, sprtWeapon;
-	Vector2f suitOffset;
-	Vector2f weaponOffset;
+	Vector2f suitOffset, weaponOffset;
+	FloatRect playBorder;
 
 	//inputs
 	Keyboard::Key kbUp = Keyboard::Key::W;

@@ -8,7 +8,7 @@ public:
 	~SpriteExtender();
 
 	static Vector2f GetCenter(Sprite * sprite);
-	static void SetCenter(Sprite * sprite, Vector2f position);
-	static void SetCenter(Sprite * sprite, float x, float y);
+	static Vector2f SetCenter(Sprite * sprite, Vector2f position);
+	static Vector2f SetCenter(Sprite * sprite, float x, float y);
 };
 

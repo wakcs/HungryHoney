@@ -162,9 +162,11 @@
     <ClInclude Include="BeeCharacter.h" />
     <ClInclude Include="BeehivePickup.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SpriteExtender.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SuitPickup.h" />
@@ -176,10 +178,12 @@
     <ClCompile Include="BeeCharacter.cpp" />
     <ClCompile Include="BeehivePickup.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpriteExtender.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

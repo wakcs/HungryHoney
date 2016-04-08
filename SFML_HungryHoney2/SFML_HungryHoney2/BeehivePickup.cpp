@@ -4,10 +4,10 @@
 
 BeehivePickup::BeehivePickup()
 {
-	spawnArea = Vector2i(0, 0);
+	spawnArea = FloatRect(0, 0, 0, 0);
 }
 
-BeehivePickup::BeehivePickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, Vector2i spawnArea)
+BeehivePickup::BeehivePickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, FloatRect spawnArea)
 	: Pickup(itemTexture, InteractTexture, position, pickupRange)
 {
 	BeehivePickup::spawnArea = spawnArea;
@@ -24,7 +24,7 @@ void BeehivePickup::Update(PlayerCharacter * player)
 	if (bInRange && Keyboard::isKeyPressed(player->GetInteractKey())) 
 	{
 		player->AddScore(iPoints);
-		Vector2f newPos = Vector2Extender::RandomVectorCoords(spawnArea, false);
+		Vector2f newPos = Vector2Extender::RandomVectorCoords(spawnArea);
 		cout << "New Pos: " << newPos.x << "," << newPos.y << endl;
 		SetPosition(newPos);
 	}

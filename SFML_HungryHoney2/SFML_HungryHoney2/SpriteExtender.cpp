@@ -18,15 +18,15 @@ Vector2f SpriteExtender::GetCenter(Sprite * sprite)
 	return Vector2f(spritePos.x + (spriteRect.width / 2), spritePos.y + (spriteRect.height / 2));
 }
 
-void SpriteExtender::SetCenter(Sprite * sprite, Vector2f position)
+Vector2f SpriteExtender::SetCenter(Sprite * sprite, Vector2f position)
 {
 	FloatRect spriteRect = sprite->getLocalBounds();
-	sprite->setPosition(position.x - (spriteRect.width / 2), position.y - (spriteRect.height / 2));
+	return Vector2f(position.x - (spriteRect.width / 2), position.y - (spriteRect.height / 2));
 }
 
-void SpriteExtender::SetCenter(Sprite * sprite, float x, float y)
+Vector2f SpriteExtender::SetCenter(Sprite * sprite, float x, float y)
 {
 	FloatRect spriteRect = sprite->getLocalBounds();
-	sprite->setPosition(x - (spriteRect.width / 2), y - (spriteRect.height / 2));
+	return Vector2f(x - (spriteRect.width / 2), y - (spriteRect.height / 2));
 }
 
