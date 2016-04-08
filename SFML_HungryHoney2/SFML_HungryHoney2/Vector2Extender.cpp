@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "Vector2Extender.h"
 
-
-Vector2Extender::Vector2Extender()
-{
-}
-
-
-Vector2Extender::~Vector2Extender()
-{
-}
-
 float Vector2Extender::NormalizeFloat(Vector2f source, Vector2f target)
 {
 	Vector2f vDistance(source - target);

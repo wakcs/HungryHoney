@@ -170,6 +170,7 @@
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="TransformableExtender.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SuitPickup.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="TransformableExtender.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

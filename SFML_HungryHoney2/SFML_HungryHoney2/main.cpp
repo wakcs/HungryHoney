@@ -8,6 +8,7 @@
 #include "GameplayScene.h"
 #include "MainMenuScene.h"
 #include "GameOverScene.h"
+#include "ScoreManager.h"
 
 using namespace sf;
 using namespace std;
@@ -24,13 +25,13 @@ int main()
 {
 	if (gameplay.Initialize() && mainMenu.Initialize() && gameOver.Initialize())
 	{
-	//Uncomment if you want to hide the console window
-	//FreeConsole();
+		//Uncomment if you want to hide the console window
+		//FreeConsole();
 
-	//creates the window where te magic happens
-	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Hungry Honey - By Geert Cocu");
-	window.setFramerateLimit(frameLimit);
-	window.setMouseCursorVisible(false);
+		//creates the window where te magic happens
+		sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Hungry Honey - By Geert Cocu");
+		window.setFramerateLimit(frameLimit);
+		window.setMouseCursorVisible(false);
 
 		while (window.isOpen())
 		{
@@ -39,6 +40,27 @@ int main()
 			{
 				if (event.type == Event::Closed)
 					window.close();
+			}
+			if (Keyboard::isKeyPressed(Keyboard::P)) {
+				try
+				{
+					ScoreManager::WriteScore(8);
+					cout << "Writing value..." << endl;
+				}
+				catch (const std::exception& ex)
+				{
+					cout << "Error: "<<ex.what() << endl;
+				}
+			}			
+			if (Keyboard::isKeyPressed(Keyboard::L)) {
+				try
+				{					
+					cout << "Reading value... " << ScoreManager::ReadScore() << endl;
+				}
+				catch (const std::exception& ex)
+				{
+					cout << "Error: " << ex.what() << endl;
+				}
 			}
 			switch (state)
 			{
