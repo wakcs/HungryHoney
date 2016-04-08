@@ -24,7 +24,7 @@ public:
 	virtual float GetHealthPoints();
 	virtual float GetDamagePoints();
 	virtual float GetAttackRange();
-	virtual bool GetDeathState();
+	virtual bool IsDead();
 
 	//setters
 	virtual void SetMaxSpeed(float maxSpeed);
@@ -34,7 +34,7 @@ public:
 
 protected:
 	float fMaxSpeed = 0, fHealthPoints = 0, fDamagePoints = 0, fAttackRange = 0;
-	bool bIsDeath = false;
+	bool bIsDead = false;
 	Vector2f velocity;
 
 	//attackdelay

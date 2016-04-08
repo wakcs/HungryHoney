@@ -48,13 +48,13 @@ void BeeCharacter::Update(PlayerCharacter * player)
 			Move(player);
 		}
 	SetHealthbar();
-	if (bIsDeath) {
+	if (bIsDead) {
 		Vector2f newPos = Vector2Extender::RandomVectorCoords(respawnArea);
 		if (newPos != oldPos) {
 			fHealthPoints = fMaxHP;
 			sprtCharacter.setPosition(newPos);
 			oldPos = newPos;
-			bIsDeath = false;
+			bIsDead = false;
 		}
 	}
 }

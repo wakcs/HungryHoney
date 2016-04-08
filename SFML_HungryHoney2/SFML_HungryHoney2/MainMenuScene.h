@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.h"
-#include "MenuButton.h"
 class MainMenuScene :
 	public Scene
 {
@@ -14,9 +13,12 @@ public:
 	virtual void Draw(RenderWindow & window);
 
 private:
-	MenuButton btnTest;
-	Texture txtrBtnClicked, txtrBtnUnclicked;
-	Font btnFont;
+	Vector2f screenCenter;
 
+	Texture txtrBackground;
+	MenuButton btnPlay, btnSettings, btnAbout, btnExit;
+
+	Text txtTitle;
+	Sprite sprtBackground;
 };
 

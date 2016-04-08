@@ -38,7 +38,8 @@ private:
 	Keyboard::Key kbLeft = Keyboard::Key::A;
 	Keyboard::Key kbRight = Keyboard::Key::D;
 	Keyboard::Key kbInteract = Keyboard::Key::E;
-	Mouse::Button mbShoot = Mouse::Button::Left;
+	Keyboard::Key kbShoot = Keyboard::Key::Space;
+	//Mouse::Button mbShoot = Mouse::Button::Left;
 
 	void Move();
 	void GetHit(float damagePoints);

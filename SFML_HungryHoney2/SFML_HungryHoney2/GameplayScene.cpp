@@ -21,49 +21,37 @@ bool GameplayScene::Initialize()
 	mainView = View(Vector2f(windowSize->x / 2, windowSize->y / 2), Vector2f(windowSize->x, windowSize->y));
 	mainView.zoom(0.5f);
 
-	fieldBorder = FloatRect(-250, -500, 500, 1000);
+	fieldBorder = FloatRect(-256, -520, 496, 1004);
 
-	//Background
-	if (!txtrBackground.loadFromFile(dirLevel + "background.png") || !txtrPlayer.loadFromFile(dirSprite + "playerBody.png") || !txtrHealth.loadFromFile(dirSprite + "health.png") ||
-		!txtrShield.loadFromFile(dirSprite + "shield.png") || !fontHud.loadFromFile(dirFont + "kenpixel_square.ttf") || !txtrBee.loadFromFile(dirSprite + "bee.png") ||
-		!txtrBeeHealth.loadFromFile(dirSprite + "healthBee.png") || !txtrInteract.loadFromFile(dirSprite + "interact.png") || !txtrHive.loadFromFile(dirSprite + "hive.png") ||
-		!txtrRobe.loadFromFile(dirSprite + "bathrobe.png") || !txtrBeeSuit.loadFromFile(dirSprite + "beekeepsuit.png") || !txtrStick.loadFromFile(dirSprite + "stick.png") ||
-		!txtrSmoker.loadFromFile(dirSprite + "smoker.png"))
+	if (!txtrBackground.loadFromFile(dirLevel + "bee_field.png") || !txtrPlayer.loadFromFile(dirSprite + "playerBody.png") || !txtrHealth.loadFromFile(dirSprite + "health.png") ||
+		!txtrShield.loadFromFile(dirSprite + "shield.png") || !txtrBee.loadFromFile(dirSprite + "bee.png") || !txtrBeeHealth.loadFromFile(dirSprite + "healthBee.png") || 
+		!txtrInteract.loadFromFile(dirSprite + "interact.png") || !txtrHive.loadFromFile(dirSprite + "hive.png") || !txtrRobe.loadFromFile(dirSprite + "bathrobe.png") ||
+		!txtrBeeSuit.loadFromFile(dirSprite + "beekeepsuit.png") || !txtrStick.loadFromFile(dirSprite + "stick.png") || !txtrSmoker.loadFromFile(dirSprite + "smoker.png")
+		|| !Scene::Initialize())
 	{
 		return false;
 	}
 
+	//background
 	sprtBackground.setTexture(txtrBackground);
 	sprtBackground.setPosition(TransformableExtender::SetCenter(&sprtBackground, 0, 0));
 
 	//Player
-	player = PlayerCharacter(&txtrPlayer, Vector2f(0, 0), NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
+	player = PlayerCharacter(&txtrPlayer, playerSpawn, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
 
 	//HUD
-	mainHud = HUD(&player, &mainView, 60, &txtrHealth, &txtrShield, &fontHud);
+	mainHud = HUD(&player, &mainView, 60, &txtrHealth, &txtrShield, &gameFont);
 
 	//Bees
 	AddBee();
 
 	//Pickups
-	hive1 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
-	hives.push_back(&hive1);
-	hive2 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
-	hives.push_back(&hive2);
-	hive3 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
-	hives.push_back(&hive3);
-	robeSuit = SuitPickup(&txtrRobe, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 5);
-	suits.push_back(&robeSuit);
-	beeSuit = SuitPickup(&txtrBeeSuit, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 15);
-	suits.push_back(&beeSuit);
-	stick = WeaponPickup(&txtrStick, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 10, 32);
-	weapons.push_back(&stick);
-	smoker = WeaponPickup(&txtrSmoker, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 20, 48);
-	weapons.push_back(&smoker);
+	SetPickups();
+
 	return true;
 }
 
-void GameplayScene::Update()
+void GameplayScene::Update(GameOverScene* gameOver)
 {
 	for each (BeehivePickup* hive in hives)
 	{
@@ -88,6 +76,20 @@ void GameplayScene::Update()
 	player.Update(bees);
 	mainView.setCenter(TransformableExtender::GetCenter(&player.sprtCharacter));
 	mainHud.Update();
+	if (player.IsDead() || mainHud.IsTimeUp()) {
+ 		if (mainHud.IsTimeUp()) {
+			gameOver->SetGameOver(GameOverScene::NOTIME, player.GetScore());
+		}
+		else {
+			gameOver->SetGameOver(GameOverScene::DEATH, player.GetScore());
+		}
+		*state = GAMEOVER;
+		Initialize();
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+		*state = MAINMENU;
+		Initialize();
+	}
 }
 
 void GameplayScene::Draw(RenderWindow & window)
@@ -149,4 +151,43 @@ void GameplayScene::AddBee()
 		beeCount++;
 		cout << "Bee Count: " << beeCount << endl;
 	}
+}
+
+void GameplayScene::SetPickups()
+{	
+	//Hives
+	hives.empty();
+	hive1 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hives.push_back(&hive1);
+	hive2 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hives.push_back(&hive2);
+	hive3 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hives.push_back(&hive3);
+	//suits
+	suits.empty();
+	robeSuit = SuitPickup(&txtrRobe, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 5);
+	suits.push_back(&robeSuit);
+	beeSuit = SuitPickup(&txtrBeeSuit, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 15);
+	suits.push_back(&beeSuit);
+
+	//weapons
+	weapons.empty();
+	stick = WeaponPickup(&txtrStick, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 10, 32);
+	weapons.push_back(&stick);
+	smoker = WeaponPickup(&txtrSmoker, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 20, 48);
+	weapons.push_back(&smoker);
+}
+
+void GameplayScene::Reset()
+{
+	//Player
+	player = PlayerCharacter(&txtrPlayer, playerSpawn, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
+
+	//Bees
+	bees.empty();
+	beeCount = 0;
+	AddBee();
+
+	//Pickups
+	SetPickups();
 }

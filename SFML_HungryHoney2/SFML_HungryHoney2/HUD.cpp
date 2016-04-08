@@ -42,7 +42,7 @@ void HUD::Update()
 	txtShield.setPosition(viewPos + shieldTxtOffset);
 	sprtShield.setPosition(viewPos + shieldOffset);
 
-	int timeLeft = -(gameElapse.getElapsedTime().asSeconds() - gameDuration.asSeconds());
+	timeLeft = -(gameElapse.getElapsedTime().asSeconds() - gameDuration.asSeconds());
 	txtTime.setString("Time Left: " + to_string(timeLeft));
 	txtTime.setPosition(viewPos + timeOffset);
 
@@ -59,4 +59,14 @@ void HUD::Draw(RenderWindow & window)
 	window.draw(txtShield);
 	window.draw(txtTime);
 	window.draw(txtScore);
+}
+
+bool HUD::IsTimeUp()
+{
+	if (timeLeft > 0) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }

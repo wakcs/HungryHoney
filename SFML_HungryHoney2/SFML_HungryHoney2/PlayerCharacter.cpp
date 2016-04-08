@@ -40,7 +40,7 @@ void PlayerCharacter::Update(vector<Character*> enemys)
 {
 	Character::Update();
 	Move();
-	if (Mouse::isButtonPressed(mbShoot)) {
+	if (Keyboard::isKeyPressed(kbShoot)) {
 		for (int i = 0; i < enemys.size(); i++)
 		{
 			Attack(enemys.at(i));

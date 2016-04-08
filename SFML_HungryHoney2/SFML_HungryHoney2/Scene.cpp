@@ -24,13 +24,21 @@ Scene::~Scene()
 
 bool Scene::Initialize()
 {
-	return false;
+	if (!txtrBtnClicked.loadFromFile(dirSprite + "btnClick.png") || !txtrBtnUnclicked.loadFromFile(dirSprite + "btnUnclick.png") || 
+		!txtrMouse.loadFromFile(dirSprite + "mouse.png") || !gameFont.loadFromFile(dirFont+"kenpixel_square.ttf"))
+	{
+		return false;
+	}
+	sprtMouse.setTexture(txtrMouse);
+	return true;
 }
 
-void Scene::Update()
+void Scene::Update(RenderWindow & window)
 {
+	sprtMouse.setPosition(Vector2f(Mouse::getPosition(window).x, Mouse::getPosition(window).y));
 }
 
 void Scene::Draw(RenderWindow & window)
 {
+	window.draw(sprtMouse);
 }

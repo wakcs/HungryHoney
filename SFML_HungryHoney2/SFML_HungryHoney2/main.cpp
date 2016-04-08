@@ -7,20 +7,22 @@
 #include <SFML\Graphics.hpp>
 #include "GameplayScene.h"
 #include "MainMenuScene.h"
+#include "GameOverScene.h"
 
 using namespace sf;
 using namespace std;
 
-Vector2i windowSize(800, 600);
+Vector2i windowSize(1280, 720);
 const int frameLimit = 60;
 
 Scene::GameState state(Scene::MAINMENU);
 GameplayScene gameplay(&state, &windowSize);
 MainMenuScene mainMenu(&state, &windowSize);
+GameOverScene gameOver(&state, &windowSize);
 
 int main()
 {
-	if (gameplay.Initialize() && mainMenu.Initialize())
+	if (gameplay.Initialize() && mainMenu.Initialize() && gameOver.Initialize())
 	{
 	//Uncomment if you want to hide the console window
 	//FreeConsole();
@@ -28,6 +30,7 @@ int main()
 	//creates the window where te magic happens
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Hungry Honey - By Geert Cocu");
 	window.setFramerateLimit(frameLimit);
+	window.setMouseCursorVisible(false);
 
 		while (window.isOpen())
 		{
@@ -43,15 +46,17 @@ int main()
 				mainMenu.Update(window);
 				mainMenu.Draw(window);
 				break;
-			case Scene::CONTROLS:
+			case Scene::SETTINGS:
 				break;
-			case Scene::CREDITS:
+			case Scene::ABOUT:
 				break;
 			case Scene::GAMEPLAY:
-				gameplay.Update();
+				gameplay.Update(&gameOver);
 				gameplay.Draw(window);
 				break;
 			case Scene::GAMEOVER:
+				gameOver.Update(window);
+				gameOver.Draw(window);
 				break;
 			default:
 				break;

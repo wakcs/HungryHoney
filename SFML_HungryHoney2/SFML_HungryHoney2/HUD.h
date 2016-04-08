@@ -10,6 +10,7 @@ public:
 
 	void Update();
 	void Draw(RenderWindow & window);
+	bool IsTimeUp();
 
 private:
 	PlayerCharacter * player;
@@ -19,5 +20,6 @@ private:
 	Clock gameElapse;
 	Time gameDuration;
 	Vector2f healthOffset, healthTxtOffset, shieldOffset, shieldTxtOffset, timeOffset, scoreOffset;
+	int timeLeft;
 };
 

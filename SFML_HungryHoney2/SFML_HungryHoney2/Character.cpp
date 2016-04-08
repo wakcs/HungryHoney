@@ -9,6 +9,7 @@ Character::Character(Texture * charachterTexture, Vector2f position)
 {
 	sprtCharacter.setTexture(*charachterTexture);
 	sprtCharacter.setPosition(position);
+	bIsDead = false;
 }
 Character::~Character()
 {
@@ -31,9 +32,9 @@ float Character::GetAttackRange()
 	return fAttackRange;
 }
 
-bool Character::GetDeathState()
+bool Character::IsDead()
 {
-	return bIsDeath;
+	return bIsDead;
 }
 
 void Character::SetMaxSpeed(float maxSpeed)
@@ -56,10 +57,10 @@ void Character::SetAttackRange(float attackRange)
 void Character::Update()
 {
 	if (fHealthPoints <= 0) {
-		bIsDeath = true;
+		bIsDead = true;
 	}
 	else {
-		bIsDeath = false;
+		bIsDead = false;
 	}
 }
 void Character::Draw(RenderWindow & window)

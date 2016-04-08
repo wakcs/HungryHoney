@@ -6,6 +6,7 @@
 #include "BeehivePickup.h"
 #include "SuitPickup.h"
 #include "WeaponPickup.h"
+#include "GameOverScene.h"
 
 class GameplayScene :
 	public Scene
@@ -16,12 +17,13 @@ public:
 	~GameplayScene();
 
 	virtual bool Initialize();
-	virtual void Update();
+	virtual void Update(GameOverScene * gameover);
 	virtual void Draw(RenderWindow & window);
 
 private:
 	View mainView;
 
+	Vector2f playerSpawn = Vector2f(0, -500);
 	FloatRect fieldBorder;
 	Texture txtrBackground;
 	Sprite sprtBackground;
@@ -35,7 +37,6 @@ private:
 	vector<Character*> bees;
 
 	HUD mainHud;
-	Font fontHud;
 
 	SuitPickup robeSuit, beeSuit;
 	vector<SuitPickup*> suits;
@@ -48,5 +49,7 @@ private:
 	Time beeDelay = Time(seconds(2));
 	int beeCount = 0;
 	void AddBee();
+	void SetPickups();
+	void Reset();
 };
 

@@ -16,7 +16,6 @@ MenuButton::MenuButton(Texture * unclickedTexture, Texture * clickedTexture, Fon
 	sprtBtnUnClicked.setPosition(TransformableExtender::SetCenter(&sprtBtnUnClicked, position));
 	sprtBtnClicked.setPosition(TransformableExtender::SetCenter(&sprtBtnClicked, position));
 	txtButton.setPosition(TransformableExtender::SetCenter(&txtButton, position));
-
 	rectButton = sprtBtnUnClicked.getGlobalBounds();
 }
 
