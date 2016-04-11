@@ -15,12 +15,12 @@ void ScoreManager::WriteScore(int score)
 
 int ScoreManager::ReadScore()
 {
-	HKEY hKey;
+	/*HKEY hKey;
 	wstring result[50];
 	DWORD dwBuffer = 8192, dwType, dwSize;
 	LONG status = RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("Software\\GeertCocu\\HungryHoney\\HighScore"), 0, KEY_ALL_ACCESS, &hKey);
 	if (status == ERROR_SUCCESS) {
 		RegQueryValueExW(hKey, TEXT("HighScore"), NULL, &dwType, (BYTE*)&result, &dwSize);
-	}
+	}*/
 	return 0;
 }

@@ -87,6 +87,12 @@
     <ClInclude Include="ScoreManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AboutScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -141,6 +147,12 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ScoreManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

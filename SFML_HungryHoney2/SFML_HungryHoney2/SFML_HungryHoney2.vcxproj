@@ -159,6 +159,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AboutScene.h" />
     <ClInclude Include="BeeCharacter.h" />
     <ClInclude Include="BeehivePickup.h" />
     <ClInclude Include="Character.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="SettingsScene.h" />
     <ClInclude Include="TransformableExtender.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SuitPickup.h" />
@@ -179,6 +181,7 @@
     <ClInclude Include="WeaponPickup.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AboutScene.cpp" />
     <ClCompile Include="BeeCharacter.cpp" />
     <ClCompile Include="BeehivePickup.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -192,6 +195,7 @@
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="SettingsScene.cpp" />
     <ClCompile Include="TransformableExtender.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
