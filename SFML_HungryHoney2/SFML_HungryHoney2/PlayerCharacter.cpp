@@ -117,6 +117,16 @@ void PlayerCharacter::Move()
 		velocity.x = 0;
 	}
 	Character::Move();
+	if (velocity.x < 0) {
+		sprtSuit.setScale(-1, 1);
+		sprtWeapon.setScale(-1, 1);
+		weaponOffset.x = -12;
+	}
+	else {
+		sprtSuit.setScale(1, 1);
+		sprtWeapon.setScale(1, 1);
+		weaponOffset.x = 12;
+	}
 	sprtSuit.setPosition(sprtCharacter.getPosition() + suitOffset);
 	sprtWeapon.setPosition(sprtCharacter.getPosition() + weaponOffset);
 }

@@ -69,10 +69,10 @@ void GameOverScene::SetGameOver(GameOverState gameoverState, float endScore)
 		break;
 	}
 	txtGameOverDesc.setPosition(TransformableExtender::SetCenter(&txtGameOverDesc, Vector2f(windowSize->x / 2, windowSize->y / 2)));
-
+	oldScore = ScoreManager::ReadScore();
 	newScore = endScore;
 	if (newScore > oldScore) {
-		txtEndScore.setString("[NEW]Final Score: " + to_string(int(endScore)));
+		txtEndScore.setString("[NEW] Final Score: " + to_string(int(endScore)));
 	}
 	else {
 		txtEndScore.setString("Final Score: " + to_string(int(endScore)));
@@ -83,7 +83,7 @@ void GameOverScene::SetGameOver(GameOverState gameoverState, float endScore)
 void GameOverScene::SaveScore()
 {
 	if (newScore >= 0 && newScore > oldScore && !bScoreSaved) {
-		//save score to xml OR txt file
+		ScoreManager::WriteScore(newScore);
 		bScoreSaved = true;
 	}
 }

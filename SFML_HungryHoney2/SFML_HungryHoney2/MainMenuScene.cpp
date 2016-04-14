@@ -40,10 +40,10 @@ void MainMenuScene::Update(RenderWindow & window)
 		*state = GAMEPLAY;
 	}
 	if (btnSettings.isClicked(window)) {
-		//*state = SETTINGS;
+		*state = SETTINGS;
 	}	
 	if (btnAbout.isClicked(window)) {
-		//*state = ABOUT;
+		*state = ABOUT;
 	}
 	if (btnExit.isClicked(window)) {
 		window.close();

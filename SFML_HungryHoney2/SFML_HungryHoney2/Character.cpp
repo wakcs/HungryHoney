@@ -8,6 +8,7 @@ Character::Character()
 Character::Character(Texture * charachterTexture, Vector2f position)
 {
 	sprtCharacter.setTexture(*charachterTexture);
+	sprtCharacter.setOrigin(sprtCharacter.getLocalBounds().width / 2, sprtCharacter.getLocalBounds().height / 2);
 	sprtCharacter.setPosition(position);
 	bIsDead = false;
 }
@@ -71,6 +72,14 @@ void Character::Draw(RenderWindow & window)
 void Character::Move()
 {
 	sprtCharacter.move(velocity);
+	Vector2f curScale = sprtCharacter.getScale();
+	if (velocity.x < 0) {
+		curScale.x = -1;
+	}
+	else {
+		curScale.x = 1;
+	}
+	sprtCharacter.setScale(curScale);
 }
 void Character::Attack(Character * character)
 {

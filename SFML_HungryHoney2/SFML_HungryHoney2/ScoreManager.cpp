@@ -3,6 +3,7 @@
 
 void ScoreManager::WriteScore(int score)
 {
+	cout << "Writing..." << endl;
 	wstring value = to_wstring(score);
 	HKEY hKey;
 	DWORD dwDisposition;
@@ -15,6 +16,7 @@ void ScoreManager::WriteScore(int score)
 
 int ScoreManager::ReadScore()
 {
+	cout << "Reading..." << endl;
 	int result = 0;
 	wstring value;
 	WCHAR szBuffer[512];

@@ -33,13 +33,12 @@ private:
 	FloatRect playBorder;
 
 	//inputs
-	Keyboard::Key kbUp = Keyboard::Key::W;
-	Keyboard::Key kbDown = Keyboard::Key::S;
-	Keyboard::Key kbLeft = Keyboard::Key::A;
-	Keyboard::Key kbRight = Keyboard::Key::D;
+	Keyboard::Key kbUp = Keyboard::Key::Up;
+	Keyboard::Key kbDown = Keyboard::Key::Down;
+	Keyboard::Key kbLeft = Keyboard::Key::Left;
+	Keyboard::Key kbRight = Keyboard::Key::Right;
 	Keyboard::Key kbInteract = Keyboard::Key::E;
 	Keyboard::Key kbShoot = Keyboard::Key::Space;
-	//Mouse::Button mbShoot = Mouse::Button::Left;
 
 	void Move();
 	void GetHit(float damagePoints);

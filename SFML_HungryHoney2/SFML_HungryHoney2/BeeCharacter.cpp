@@ -26,6 +26,7 @@ BeeCharacter::BeeCharacter(Texture * charachterTexture, Vector2f position, float
 	if (healthbarTexture != NULL) {
 		healthbarScale = sprtCharacter.getLocalBounds().width / 40;
 		sprtHealthBar.setTexture(*healthbarTexture);
+		sprtHealthBar.setOrigin(sprtHealthBar.getLocalBounds().width / 2, sprtHealthBar.getLocalBounds().height / 2);
 		SetHealthbar();
 	}
 

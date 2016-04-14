@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
 #include "Vector2Extender.h"
+#include "TransformableExtender.h"
 
 using namespace sf;
 using namespace std;

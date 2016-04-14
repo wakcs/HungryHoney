@@ -10,7 +10,9 @@ Pickup::Pickup()
 Pickup::Pickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange)
 {
 	sprtItem.setTexture(*itemTexture);
+	sprtItem.setOrigin(sprtItem.getLocalBounds().width / 2, sprtItem.getLocalBounds().height / 2);
 	sprtInteract.setTexture(*InteractTexture);
+	sprtInteract.setOrigin(sprtInteract.getLocalBounds().width / 2, sprtInteract.getLocalBounds().height / 2);
 	SetPosition(position);
 	iPickupRange = pickupRange;
 }

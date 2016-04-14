@@ -5,8 +5,10 @@
 #include <Windows.h>
 #include <iostream>
 #include <SFML\Graphics.hpp>
-#include "GameplayScene.h"
 #include "MainMenuScene.h"
+#include "SettingsScene.h"
+#include "AboutScene.h"
+#include "GameplayScene.h"
 #include "GameOverScene.h"
 #include "ScoreManager.h"
 
@@ -17,13 +19,15 @@ Vector2i windowSize(1280, 720);
 const int frameLimit = 60;
 
 Scene::GameState state(Scene::MAINMENU);
-GameplayScene gameplay(&state, &windowSize);
 MainMenuScene mainMenu(&state, &windowSize);
+SettingsScene settings(&state, &windowSize);
+AboutScene about(&state, &windowSize);
+GameplayScene gameplay(&state, &windowSize);
 GameOverScene gameOver(&state, &windowSize);
 
 int main()
 {
-	if (gameplay.Initialize() && mainMenu.Initialize() && gameOver.Initialize())
+	if (mainMenu.Initialize() && settings.Initialize() && about.Initialize() && gameplay.Initialize() && gameOver.Initialize())
 	{
 		//Uncomment if you want to hide the console window
 		//FreeConsole();
@@ -48,8 +52,12 @@ int main()
 				mainMenu.Draw(window);
 				break;
 			case Scene::SETTINGS:
+				settings.Update(window);
+				settings.Draw(window);
 				break;
 			case Scene::ABOUT:
+				about.Update(window);
+				about.Draw(window);
 				break;
 			case Scene::GAMEPLAY:
 				gameplay.Update(&gameOver);
