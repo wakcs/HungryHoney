@@ -41,27 +41,6 @@ int main()
 				if (event.type == Event::Closed)
 					window.close();
 			}
-			if (Keyboard::isKeyPressed(Keyboard::P)) {
-				try
-				{
-					ScoreManager::WriteScore(8);
-					cout << "Writing value..." << endl;
-				}
-				catch (const std::exception& ex)
-				{
-					cout << "Error: "<<ex.what() << endl;
-				}
-			}			
-			if (Keyboard::isKeyPressed(Keyboard::L)) {
-				try
-				{					
-					cout << "Reading value... " << ScoreManager::ReadScore() << endl;
-				}
-				catch (const std::exception& ex)
-				{
-					cout << "Error: " << ex.what() << endl;
-				}
-			}
 			switch (state)
 			{
 			case Scene::MAINMENU:
