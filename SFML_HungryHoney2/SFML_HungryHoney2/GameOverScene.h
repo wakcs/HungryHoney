@@ -5,10 +5,6 @@ class GameOverScene :
 	public Scene
 {
 public:
-	enum GameOverState {
-		NOTIME,
-		DEATH
-	};
 
 	GameOverScene();
 	GameOverScene(GameState * state, Vector2i * windowSize);
@@ -18,7 +14,7 @@ public:
 	virtual void Update(RenderWindow & window);
 	virtual void Draw(RenderWindow & window);
 
-	void SetGameOver(GameOverState gameoverState, float endScore);
+	void SetGameOver(float endScore);
 
 private:
 	float oldScore, newScore;
@@ -26,7 +22,7 @@ private:
 
 	Texture txtrBackground;
 	Sprite sprtBackground;
-	Text txtGameOverDesc, txtEndScore;
+	Text txtGameOverDesc, txtEndScore, txtNewHigh;
 	MenuButton btnRetry, btnExit;
 
 	void SaveScore();

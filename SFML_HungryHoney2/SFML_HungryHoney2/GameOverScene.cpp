@@ -28,7 +28,11 @@ bool GameOverScene::Initialize()
 	btnExit= MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f((windowSize->x / 2) + 150, windowSize->y - 100), "Exit To Menu");
 
 	txtGameOverDesc.setFont(gameFont);
+	txtGameOverDesc.setString("You have been overrun by bees.");
 	txtEndScore.setFont(gameFont);
+	txtNewHigh.setFont(gameFont);
+	txtNewHigh.setColor(Color::Red);
+	txtNewHigh.setString("New Highscore!");
 	return true;
 }
 
@@ -51,33 +55,23 @@ void GameOverScene::Draw(RenderWindow & window)
 	window.draw(sprtBackground);
 	window.draw(txtGameOverDesc);
 	window.draw(txtEndScore);
+	if (newScore > oldScore) {
+		window.draw(txtNewHigh);
+	}
 	btnRetry.Draw(window);
 	btnExit.Draw(window);
 	Scene::Draw(window);
 	window.display();
 }
 
-void GameOverScene::SetGameOver(GameOverState gameoverState, float endScore)
+void GameOverScene::SetGameOver(float endScore)
 {
-	switch (gameoverState)
-	{
-	case GameOverScene::NOTIME:
-		txtGameOverDesc.setString("You have survived the bees and  \ngathered plenty honey for breakfast.");
-		break;
-	case GameOverScene::DEATH:
-		txtGameOverDesc.setString("You have been overrun by bees.");
-		break;
-	}
 	txtGameOverDesc.setPosition(TransformableExtender::SetCenter(&txtGameOverDesc, Vector2f(windowSize->x / 2, windowSize->y / 2)));
 	oldScore = ScoreManager::ReadScore();
 	newScore = endScore;
-	if (newScore > oldScore) {
-		txtEndScore.setString("[NEW] Final Score: " + to_string(int(endScore)));
-	}
-	else {
-		txtEndScore.setString("Final Score: " + to_string(int(endScore)));
-	}
-	txtEndScore.setPosition(TransformableExtender::SetCenter(&txtEndScore, Vector2f(windowSize->x / 2, windowSize->y / 2 + txtGameOverDesc.getLocalBounds().height+txtEndScore.getLocalBounds().height)));
+	txtEndScore.setString("Final Score: " + to_string(int(endScore)));
+	txtEndScore.setPosition(TransformableExtender::SetCenter(&txtEndScore, Vector2f(windowSize->x / 2, txtGameOverDesc.getPosition().y + txtGameOverDesc.getLocalBounds().height + txtEndScore.getLocalBounds().height)));
+	txtNewHigh.setPosition(TransformableExtender::SetCenter(&txtNewHigh, Vector2f(windowSize->x / 2, txtEndScore.getPosition().y + txtEndScore.getLocalBounds().height + txtNewHigh.getLocalBounds().height)));
 }
 
 void GameOverScene::SaveScore()
