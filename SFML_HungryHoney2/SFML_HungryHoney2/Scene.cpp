@@ -35,7 +35,7 @@ bool Scene::Initialize()
 
 void Scene::Update(RenderWindow & window)
 {
-	sprtMouse.setPosition(Vector2f(Mouse::getPosition(window).x, Mouse::getPosition(window).y));
+	sprtMouse.setPosition(window.mapPixelToCoords(Mouse::getPosition(window)));
 }
 
 void Scene::Draw(RenderWindow & window)

@@ -33,7 +33,7 @@ public:
 protected:
 	GameState * state;
 	Vector2i * windowSize;
-	string dirSprite = "\\Resources\\Sprites\\", dirLevel = "\\Resources\\Levels\\", dirFont = "\\Resources\\Fonts\\";
+	string dirSprite = "\\Resources\\Sprites\\", dirLevel = "\\Resources\\Backgrounds\\", dirFont = "\\Resources\\Fonts\\";
 
 	Texture txtrMouse, txtrBtnClicked, txtrBtnUnclicked;
 	Font gameFont;
