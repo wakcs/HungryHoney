@@ -33,15 +33,16 @@ bool MainMenuScene::Initialize()
 	return true;
 }
 
-void MainMenuScene::Update(RenderWindow & window)
+void MainMenuScene::Update(RenderWindow & window, GameplayScene* gameplay)
 {
 	Scene::Update(window);
 	if (btnPlay.isClicked(window)) {
+		gameplay->Reset();
 		*state = GAMEPLAY;
 	}
 	if (btnSettings.isClicked(window)) {
 		*state = SETTINGS;
-	}	
+	}
 	if (btnAbout.isClicked(window)) {
 		*state = ABOUT;
 	}

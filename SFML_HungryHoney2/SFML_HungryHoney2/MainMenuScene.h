@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "GameplayScene.h"
+
 class MainMenuScene :
 	public Scene
 {
@@ -9,7 +11,7 @@ public:
 	~MainMenuScene();
 
 	virtual bool Initialize();
-	virtual void Update(RenderWindow & window);
+	virtual void Update(RenderWindow & window, GameplayScene*gameplay);
 	virtual void Draw(RenderWindow & window);
 
 private:
