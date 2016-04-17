@@ -13,10 +13,7 @@ MenuButton::MenuButton(Texture * unclickedTexture, Texture * clickedTexture, Fon
 	txtButton.setFont(*textFont);
 	txtButton.setString(buttonText);
 
-	sprtBtnUnClicked.setPosition(TransformableExtender::SetCenter(&sprtBtnUnClicked, position));
-	sprtBtnClicked.setPosition(TransformableExtender::SetCenter(&sprtBtnClicked, position));
-	txtButton.setPosition(TransformableExtender::SetCenter(&txtButton, position));
-	rectButton = sprtBtnUnClicked.getGlobalBounds();
+	SetPosition(position);
 }
 
 
@@ -45,4 +42,19 @@ void MenuButton::Draw(RenderWindow & window)
 		window.draw(sprtBtnUnClicked);
 	}
 	window.draw(txtButton);
+}
+
+void MenuButton::SetPosition(Vector2f position)
+{
+	sprtBtnUnClicked.setPosition(TransformableExtender::SetCenter(&sprtBtnUnClicked, position));
+	sprtBtnClicked.setPosition(TransformableExtender::SetCenter(&sprtBtnClicked, position));
+	txtButton.setPosition(TransformableExtender::SetCenter(&txtButton, position));
+	rectButton = sprtBtnUnClicked.getGlobalBounds();
+}
+
+void MenuButton::SetScale(float scaleX, float scaleY)
+{
+	sprtBtnUnClicked.setScale(scaleX, scaleY);
+	sprtBtnClicked.setScale(scaleX, scaleY);
+	txtButton.setScale(scaleX, scaleY);
 }

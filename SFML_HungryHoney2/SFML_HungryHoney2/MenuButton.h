@@ -14,6 +14,8 @@ public:
 
 	bool isClicked(RenderWindow & window);
 	void Draw(RenderWindow & window);
+	void SetPosition(Vector2f position);
+	void SetScale(float scaleX, float scaleY);
 
 private:
 	Sprite sprtBtnUnClicked, sprtBtnClicked;
