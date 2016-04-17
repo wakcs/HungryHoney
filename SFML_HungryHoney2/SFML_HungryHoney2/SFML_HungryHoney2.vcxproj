@@ -168,7 +168,6 @@
     <ClInclude Include="HUD.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="MenuButton.h" />
-    <ClInclude Include="MessageBoxScene.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Scene.h" />
@@ -192,7 +191,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="MenuButton.cpp" />
-    <ClCompile Include="MessageBoxScene.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Scene.cpp" />
