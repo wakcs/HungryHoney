@@ -40,7 +40,7 @@ bool GameplayScene::Initialize()
 	player = PlayerCharacter(&txtrPlayer, playerSpawn, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
 
 	//HUD
-	mainHud = HUD(&player, &mainView, 60, &txtrHealth, &txtrShield, &gameFont);
+	mainHud = HUD(&player, &mainView, &txtrHealth, &txtrShield, &gameFont);
 
 	//Bees
 	AddBee();
@@ -51,12 +51,12 @@ bool GameplayScene::Initialize()
 	return true;
 }
 
-void GameplayScene::Update(GameOverScene* gameOver)
+void GameplayScene::Update(RenderWindow & window, GameOverScene* gameOver)
 {
 	for each (BeehivePickup* hive in hives)
 	{
 		hive->Update(&player);
-	}		
+	}
 	for each (SuitPickup* suit in suits)
 	{
 		suit->Update(&player);
@@ -76,19 +76,13 @@ void GameplayScene::Update(GameOverScene* gameOver)
 	player.Update(bees);
 	mainView.setCenter(TransformableExtender::GetCenter(&player.sprtCharacter));
 	mainHud.Update();
-	if (player.IsDead() || mainHud.IsTimeUp()) {
- 		if (mainHud.IsTimeUp()) {
-			gameOver->SetGameOver(GameOverScene::NOTIME, player.GetScore());
-		}
-		else {
-			gameOver->SetGameOver(GameOverScene::DEATH, player.GetScore());
-		}
+	if (player.IsDead()) {
+		gameOver->SetGameOver(player.GetScore());
+		Reset();
 		*state = GAMEOVER;
-		Initialize();
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 		*state = MAINMENU;
-		Initialize();
 	}
 }
 
@@ -120,7 +114,7 @@ void GameplayScene::Draw(RenderWindow & window)
 
 void GameplayScene::AddBee()
 {
-	if (beeCount < 6) {
+	if (beeCount < 10) {
 		switch (beeCount)
 		{
 		case 0:
@@ -146,6 +140,22 @@ void GameplayScene::AddBee()
 		case 5:		
 			bee6 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee6);
+			break;		
+		case 6:
+			bee7 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bees.push_back(&bee7);
+			break;
+		case 7:
+			bee8 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bees.push_back(&bee8);
+			break;
+		case 8:
+			bee9 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bees.push_back(&bee9);
+			break;
+		case 9:
+			bee10 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bees.push_back(&bee10);
 			break;
 		}
 		beeCount++;
@@ -156,22 +166,26 @@ void GameplayScene::AddBee()
 void GameplayScene::SetPickups()
 {	
 	//Hives
-	hives.empty();
+	hives.clear();
 	hive1 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
 	hives.push_back(&hive1);
 	hive2 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
 	hives.push_back(&hive2);
 	hive3 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
 	hives.push_back(&hive3);
+	hive4 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hives.push_back(&hive4);
+	hive5 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hives.push_back(&hive5);
 	//suits
-	suits.empty();
+	suits.clear();
 	robeSuit = SuitPickup(&txtrRobe, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 5);
 	suits.push_back(&robeSuit);
 	beeSuit = SuitPickup(&txtrBeeSuit, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 15);
 	suits.push_back(&beeSuit);
 
 	//weapons
-	weapons.empty();
+	weapons.clear();
 	stick = WeaponPickup(&txtrStick, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 10, 32);
 	weapons.push_back(&stick);
 	smoker = WeaponPickup(&txtrSmoker, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 20, 48);
@@ -184,7 +198,8 @@ void GameplayScene::Reset()
 	player = PlayerCharacter(&txtrPlayer, playerSpawn, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
 
 	//Bees
-	bees.empty();
+	beeTimer.restart();
+	bees.clear();
 	beeCount = 0;
 	AddBee();
 

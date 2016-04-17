@@ -17,8 +17,9 @@ public:
 	~GameplayScene();
 
 	virtual bool Initialize();
-	virtual void Update(GameOverScene * gameover);
+	virtual void Update(RenderWindow & window, GameOverScene * gameover);
 	virtual void Draw(RenderWindow & window);
+	void Reset();
 
 private:
 	View mainView;
@@ -33,7 +34,7 @@ private:
 	float plrSpeed = 2, plrHP = 100, plrDefP = 0, plrDamP = 5, plrAtRange = 16;
 	float beeSpeed = 1, beeHP = 40, beeDamP = 20, beeAtRange = 32, beePurRange = 160;
 	PlayerCharacter player;
-	BeeCharacter bee1, bee2, bee3, bee4, bee5, bee6;
+	BeeCharacter bee1, bee2, bee3, bee4, bee5, bee6, bee7, bee8, bee9, bee10;
 	vector<Character*> bees;
 
 	HUD mainHud;
@@ -42,14 +43,13 @@ private:
 	vector<SuitPickup*> suits;
 	WeaponPickup stick, smoker;
 	vector<WeaponPickup*> weapons;
-	BeehivePickup hive1, hive2, hive3;
+	BeehivePickup hive1, hive2, hive3, hive4, hive5;
 	vector<BeehivePickup*> hives;
 
 	Clock beeTimer;
-	Time beeDelay = Time(seconds(2));
+	Time beeDelay = Time(seconds(1));
 	int beeCount = 0;
 	void AddBee();
 	void SetPickups();
-	void Reset();
 };
 
