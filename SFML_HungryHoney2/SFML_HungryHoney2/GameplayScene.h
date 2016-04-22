@@ -7,6 +7,7 @@
 #include "SuitPickup.h"
 #include "WeaponPickup.h"
 #include "GameOverScene.h"
+#include "Obstruction.h"
 
 class GameplayScene :
 	public Scene
@@ -24,7 +25,7 @@ public:
 private:
 	View mainView;
 
-	Vector2f playerSpawn = Vector2f(0, -500);
+	Vector2f playerSpawn = Vector2f(0, -450);
 	FloatRect fieldBorder;
 	Texture txtrBackground;
 	Sprite sprtBackground;
@@ -32,7 +33,7 @@ private:
 	Texture txtrInteract, txtrHive, txtrRobe, txtrBeeSuit, txtrStick, txtrSmoker;
 	
 	float plrSpeed = 2, plrHP = 100, plrDefP = 0, plrDamP = 5, plrAtRange = 16;
-	float beeSpeed = 1, beeHP = 40, beeDamP = 20, beeAtRange = 32, beePurRange = 160;
+	float beeSpeed = 1.5f, beeHP = 40, beeDamP = 20, beeAtRange = 32, beePurRange = 160;
 	PlayerCharacter player;
 	BeeCharacter bee1, bee2, bee3, bee4, bee5, bee6, bee7, bee8, bee9, bee10;
 	vector<Character*> bees;
@@ -49,7 +50,15 @@ private:
 	Clock beeTimer;
 	Time beeDelay = Time(seconds(1));
 	int beeCount = 0;
+
+	Texture txtrWallVer, txtrWallHor, txtrTree;
+	Obstruction wallLeft, wallRight, wallTop, wallBot;
+	Obstruction tree1, tree2, tree3, tree4, tree5;
+	vector<Obstruction*> obstructions;
+
+
 	void AddBee();
 	void SetPickups();
+	void SetTrees();
 };
 

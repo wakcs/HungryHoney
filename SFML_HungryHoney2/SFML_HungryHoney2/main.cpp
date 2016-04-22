@@ -33,7 +33,7 @@ int main()
 	if (mainMenu.Initialize() && settings.Initialize() && about.Initialize() && gameplay.Initialize() && gameOver.Initialize())
 	{
 		//Uncomment if you want to hide the console window
-		FreeConsole();
+		//FreeConsole();
 
 		//creates the window where te magic happens
 		sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Hungry Honey - By Geert Cocu");

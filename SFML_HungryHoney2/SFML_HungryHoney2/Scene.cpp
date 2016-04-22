@@ -24,8 +24,8 @@ Scene::~Scene()
 
 bool Scene::Initialize()
 {
-	if (!txtrBtnClicked.loadFromFile(dirSprite + "btnClick.png") || !txtrBtnUnclicked.loadFromFile(dirSprite + "btnUnclick.png") || 
-		!txtrMouse.loadFromFile(dirSprite + "mouse.png") || !gameFont.loadFromFile(dirFont+"kenpixel_square.ttf"))
+	if (!txtrBtnClicked.loadFromFile(dirSprite + "btnClick.png") || !txtrBtnUnclicked.loadFromFile(dirSprite + "btnUnclick.png") ||
+		!txtrMouse.loadFromFile(dirSprite + "mouse.png") || !gameFont.loadFromFile(dirFont + "kenpixel_square.ttf"))
 	{
 		return false;
 	}

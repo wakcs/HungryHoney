@@ -24,10 +24,10 @@ bool GameplayScene::Initialize()
 	fieldBorder = FloatRect(-256, -520, 496, 1004);
 
 	if (!txtrBackground.loadFromFile(dirLevel + "bee_field.png") || !txtrPlayer.loadFromFile(dirSprite + "playerBody.png") || !txtrHealth.loadFromFile(dirSprite + "health.png") ||
-		!txtrShield.loadFromFile(dirSprite + "shield.png") || !txtrBee.loadFromFile(dirSprite + "bee.png") || !txtrBeeHealth.loadFromFile(dirSprite + "healthBee.png") || 
+		!txtrShield.loadFromFile(dirSprite + "shield.png") || !txtrBee.loadFromFile(dirSprite + "bee.png") || !txtrBeeHealth.loadFromFile(dirSprite + "healthBee.png") ||
 		!txtrInteract.loadFromFile(dirSprite + "interact.png") || !txtrHive.loadFromFile(dirSprite + "hive.png") || !txtrRobe.loadFromFile(dirSprite + "bathrobe.png") ||
 		!txtrBeeSuit.loadFromFile(dirSprite + "beekeepsuit.png") || !txtrStick.loadFromFile(dirSprite + "stick.png") || !txtrSmoker.loadFromFile(dirSprite + "smoker.png")
-		|| !Scene::Initialize())
+		|| !txtrWallVer.loadFromFile(dirSprite + "fence_ver.png") || !txtrWallHor.loadFromFile(dirSprite + "fence_hor.png") || !txtrTree.loadFromFile(dirSprite + "tree.png") || !Scene::Initialize())
 	{
 		return false;
 	}
@@ -48,11 +48,32 @@ bool GameplayScene::Initialize()
 	//Pickups
 	SetPickups();
 
+	//obstructions
+	wallLeft = Obstruction(&txtrWallVer, Vector2f(-264, 0), &player);
+	obstructions.push_back(&wallLeft);
+	wallRight = Obstruction(&txtrWallVer, Vector2f(264, 0), &player);
+	obstructions.push_back(&wallRight);
+	wallTop = Obstruction(&txtrWallHor, Vector2f(0, -520), &player);
+	obstructions.push_back(&wallTop);
+	wallBot = Obstruction(&txtrWallHor, Vector2f(0, 520), &player);
+	obstructions.push_back(&wallBot);
+
+	SetTrees();
+	obstructions.push_back(&tree1);
+	obstructions.push_back(&tree2);
+	obstructions.push_back(&tree3);
+	obstructions.push_back(&tree4);
+	obstructions.push_back(&tree5);
+
 	return true;
 }
 
 void GameplayScene::Update(RenderWindow & window, GameOverScene* gameOver)
 {
+	for each (Obstruction* obstruct in obstructions)
+	{
+		obstruct->Update();
+	}
 	for each (BeehivePickup* hive in hives)
 	{
 		hive->Update(&player);
@@ -90,6 +111,10 @@ void GameplayScene::Draw(RenderWindow & window)
 {
 	window.clear();
 	window.draw(sprtBackground);
+	for each (Obstruction* obstruct in obstructions)
+	{
+		obstruct->Draw(window);
+	}
 	for each (BeehivePickup* hive in hives)
 	{
 		hive->Draw(window);
@@ -192,6 +217,16 @@ void GameplayScene::SetPickups()
 	weapons.push_back(&smoker);
 }
 
+void GameplayScene::SetTrees()
+{
+	tree1 = Obstruction(&txtrTree, Vector2Extender::RandomVectorCoords(fieldBorder), &player);
+	tree2 = Obstruction(&txtrTree, Vector2Extender::RandomVectorCoords(fieldBorder), &player);
+	tree3 = Obstruction(&txtrTree, Vector2Extender::RandomVectorCoords(fieldBorder), &player);
+	tree4 = Obstruction(&txtrTree, Vector2Extender::RandomVectorCoords(fieldBorder), &player);
+	tree5 = Obstruction(&txtrTree, Vector2Extender::RandomVectorCoords(fieldBorder), &player);
+}
+
+
 void GameplayScene::Reset()
 {
 	//Player
@@ -205,4 +240,7 @@ void GameplayScene::Reset()
 
 	//Pickups
 	SetPickups();
+
+	//Trees
+	SetTrees();
 }
