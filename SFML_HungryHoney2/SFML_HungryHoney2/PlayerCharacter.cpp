@@ -46,6 +46,10 @@ void PlayerCharacter::Update(vector<Character*> enemys)
 			Attack(enemys.at(i));
 		}
 	}
+	blockTop = false;
+	blockBottom = false;
+	blockLeft = false;
+	blockRight = false;
 }
 void PlayerCharacter::Draw(RenderWindow & window)
 {
@@ -95,22 +99,21 @@ void PlayerCharacter::SubtractScore(float points)
 
 void PlayerCharacter::Move()
 {
-	Vector2f charPos = sprtCharacter.getPosition();
-	if (Keyboard::isKeyPressed(kbUp) && charPos.y > playBorder.top)
+	if (Keyboard::isKeyPressed(kbUp) && !blockTop)
 	{
 		velocity.y = -fMaxSpeed;
 	}
-	else if (Keyboard::isKeyPressed(kbDown) && charPos.y < playBorder.top + playBorder.height) {
+	else if (Keyboard::isKeyPressed(kbDown) && !blockBottom) {
 		velocity.y = fMaxSpeed;
 	}
 	else {
 		velocity.y = 0;
 	}
 
-	if (Keyboard::isKeyPressed(kbLeft) && charPos.x > playBorder.left) {
+	if (Keyboard::isKeyPressed(kbLeft) && !blockLeft) {
 		velocity.x = -fMaxSpeed;
 	}
-	else if (Keyboard::isKeyPressed(kbRight) && charPos.x < playBorder.left + playBorder.width) {
+	else if (Keyboard::isKeyPressed(kbRight) && !blockRight) {
 		velocity.x = fMaxSpeed;
 	}
 	else {

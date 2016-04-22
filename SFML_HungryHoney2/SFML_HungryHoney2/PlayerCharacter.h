@@ -5,6 +5,8 @@ class PlayerCharacter :
 	public Character
 {
 public:
+	bool blockTop, blockBottom, blockLeft, blockRight;
+
 	PlayerCharacter();
 	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange, FloatRect playBorder);
 	~PlayerCharacter();
