@@ -56,6 +56,7 @@ private:
 	Obstruction tree1, tree2, tree3, tree4, tree5;
 	vector<Obstruction*> obstructions;
 
+	SoundBuffer bufPlayerHit, bufBeeHit, bufBeeHive, bufPickup;
 
 	void AddBee();
 	void SetPickups();

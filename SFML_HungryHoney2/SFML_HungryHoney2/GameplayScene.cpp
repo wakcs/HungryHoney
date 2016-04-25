@@ -27,7 +27,9 @@ bool GameplayScene::Initialize()
 		!txtrShield.loadFromFile(dirSprite + "shield.png") || !txtrBee.loadFromFile(dirSprite + "bee.png") || !txtrBeeHealth.loadFromFile(dirSprite + "healthBee.png") ||
 		!txtrInteract.loadFromFile(dirSprite + "interact.png") || !txtrHive.loadFromFile(dirSprite + "hive.png") || !txtrRobe.loadFromFile(dirSprite + "bathrobe.png") ||
 		!txtrBeeSuit.loadFromFile(dirSprite + "beekeepsuit.png") || !txtrStick.loadFromFile(dirSprite + "stick.png") || !txtrSmoker.loadFromFile(dirSprite + "smoker.png")
-		|| !txtrWallVer.loadFromFile(dirSprite + "fence_ver.png") || !txtrWallHor.loadFromFile(dirSprite + "fence_hor.png") || !txtrTree.loadFromFile(dirSprite + "tree.png") || !Scene::Initialize())
+		|| !txtrWallVer.loadFromFile(dirSprite + "fence_ver.png") || !txtrWallHor.loadFromFile(dirSprite + "fence_hor.png") || !txtrTree.loadFromFile(dirSprite + "tree.png") ||
+		!bufPlayerHit.loadFromFile(dirAudio + "player_hit.ogg") || !bufBeeHit.loadFromFile(dirAudio + "bee_hit.ogg") || !bufBeeHive.loadFromFile(dirAudio + "score.ogg") ||
+		!bufPickup.loadFromFile(dirAudio + "pickup.ogg") || !Scene::Initialize())
 	{
 		return false;
 	}
@@ -37,7 +39,7 @@ bool GameplayScene::Initialize()
 	sprtBackground.setPosition(TransformableExtender::SetCenter(&sprtBackground, 0, 0));
 
 	//Player
-	player = PlayerCharacter(&txtrPlayer, playerSpawn, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
+	player = PlayerCharacter(&txtrPlayer, playerSpawn, &bufPlayerHit, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange);
 
 	//HUD
 	mainHud = HUD(&player, &mainView, &txtrHealth, &txtrShield, &gameFont);
@@ -143,43 +145,43 @@ void GameplayScene::AddBee()
 		switch (beeCount)
 		{
 		case 0:
-			bee1 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee1 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee1);
 			break;
 		case 1:
-			bee2 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee2 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee2);
 			break;
 		case 2:
-			bee3 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee3 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee3);
 			break;
 		case 3:
-			bee4 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee4 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee4);
 			break;
 		case 4:		
-			bee5 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee5 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee5);
 			break;
 		case 5:		
-			bee6 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee6 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee6);
 			break;		
 		case 6:
-			bee7 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee7 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee7);
 			break;
 		case 7:
-			bee8 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee8 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee8);
 			break;
 		case 8:
-			bee9 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee9 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee9);
 			break;
 		case 9:
-			bee10 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
+			bee10 = BeeCharacter(&txtrBee, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHit, beeSpeed, beeHP, beeDamP, beeAtRange, beePurRange, &txtrBeeHealth, fieldBorder);
 			bees.push_back(&bee10);
 			break;
 		}
@@ -192,28 +194,28 @@ void GameplayScene::SetPickups()
 {	
 	//Hives
 	hives.clear();
-	hive1 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hive1 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHive, 32, fieldBorder);
 	hives.push_back(&hive1);
-	hive2 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hive2 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHive, 32, fieldBorder);
 	hives.push_back(&hive2);
-	hive3 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hive3 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHive, 32, fieldBorder);
 	hives.push_back(&hive3);
-	hive4 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hive4 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHive, 32, fieldBorder);
 	hives.push_back(&hive4);
-	hive5 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, fieldBorder);
+	hive5 = BeehivePickup(&txtrHive, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufBeeHive, 32, fieldBorder);
 	hives.push_back(&hive5);
 	//suits
 	suits.clear();
-	robeSuit = SuitPickup(&txtrRobe, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 5);
+	robeSuit = SuitPickup(&txtrRobe, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufPickup, 20, 5);
 	suits.push_back(&robeSuit);
-	beeSuit = SuitPickup(&txtrBeeSuit, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 20, 15);
+	beeSuit = SuitPickup(&txtrBeeSuit, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufPickup, 20, 15);
 	suits.push_back(&beeSuit);
 
 	//weapons
 	weapons.clear();
-	stick = WeaponPickup(&txtrStick, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 10, 32);
+	stick = WeaponPickup(&txtrStick, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufPickup, 32, 10, 32);
 	weapons.push_back(&stick);
-	smoker = WeaponPickup(&txtrSmoker, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), 32, 20, 48);
+	smoker = WeaponPickup(&txtrSmoker, &txtrInteract, Vector2Extender::RandomVectorCoords(fieldBorder), &bufPickup, 32, 20, 48);
 	weapons.push_back(&smoker);
 }
 
@@ -230,7 +232,7 @@ void GameplayScene::SetTrees()
 void GameplayScene::Reset()
 {
 	//Player
-	player = PlayerCharacter(&txtrPlayer, playerSpawn, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange, fieldBorder);
+	player = PlayerCharacter(&txtrPlayer, playerSpawn, &bufPlayerHit, NULL, NULL, plrSpeed, plrHP, plrDefP, plrDamP, plrAtRange);
 
 	//Bees
 	beeTimer.restart();
