@@ -32,8 +32,8 @@ bool SettingsScene::Initialize()
 	txtScoreNum.setString(to_string(ScoreManager::ReadScore()));
 	txtScoreNum.setPosition(TransformableExtender::SetCenter(&txtScoreNum, Vector2f(windowSize->x - 200, windowSize->y / 2-100)));
 
-	btnReset = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(windowSize->x - 200, windowSize->y / 2), "Reset");
-	btnBack = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(windowSize->x - 200, windowSize->y - 100), "Back");
+	btnReset = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(windowSize->x - 200, windowSize->y / 2), "Reset");
+	btnBack = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(windowSize->x - 200, windowSize->y - 100), "Back");
 	return true;
 }
 
