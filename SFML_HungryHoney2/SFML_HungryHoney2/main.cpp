@@ -5,12 +5,14 @@
 #include <Windows.h>
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include "MainMenuScene.h"
 #include "SettingsScene.h"
 #include "AboutScene.h"
 #include "GameplayScene.h"
 #include "GameOverScene.h"
 #include "ScoreManager.h"
+#include "BackgroundMusic.h"
 
 using namespace sf;
 using namespace std;
@@ -20,20 +22,20 @@ const int updatesPerSecond = 60;
 Clock updateClock;
 Time updateTimer;
 
-
 Scene::GameState state(Scene::MAINMENU);
 MainMenuScene mainMenu(&state, &windowSize);
 SettingsScene settings(&state, &windowSize);
 AboutScene about(&state, &windowSize);
 GameplayScene gameplay(&state, &windowSize);
 GameOverScene gameOver(&state, &windowSize);
+BackgroundMusic music(&state, &windowSize);
 
 int main()
 {
-	if (mainMenu.Initialize() && settings.Initialize() && about.Initialize() && gameplay.Initialize() && gameOver.Initialize())
+	if (mainMenu.Initialize() && settings.Initialize() && about.Initialize() && gameplay.Initialize() && gameOver.Initialize() && music.Initialize())
 	{
 		//Uncomment if you want to hide the console window
-		//FreeConsole();
+		FreeConsole();
 
 		//creates the window where te magic happens
 		sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Hungry Honey - By Geert Cocu");
@@ -51,6 +53,7 @@ int main()
 					if (event.type == Event::Closed)
 						window.close();
 				}
+				music.Update();
 				switch (state)
 				{
 				case Scene::MAINMENU:
