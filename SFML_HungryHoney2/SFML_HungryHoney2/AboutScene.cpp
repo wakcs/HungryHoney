@@ -23,7 +23,7 @@ bool AboutScene::Initialize()
 	}
 	sprtAbout.setTexture(txtrAbout);
 	sprtAbout.setPosition(TransformableExtender::SetCenter(&sprtAbout, Vector2f(windowSize->x / 2, windowSize->y / 2)));
-	btnBack = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(windowSize->x - 200, windowSize->y - 100), "Back");
+	btnBack = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(windowSize->x - 200, windowSize->y - 100), "Back");
 	return true;
 }
 

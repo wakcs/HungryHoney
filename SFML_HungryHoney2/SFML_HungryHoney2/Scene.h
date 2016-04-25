@@ -33,9 +33,11 @@ public:
 protected:
 	GameState * state;
 	Vector2i * windowSize;
+
 	string dirSprite = "\\Resources\\Sprites\\", dirLevel = "\\Resources\\Backgrounds\\", dirFont = "\\Resources\\Fonts\\", dirAudio = "\\Resources\\Audio\\";
 
 	Texture txtrMouse, txtrBtnClicked, txtrBtnUnclicked;
+	SoundBuffer bufClick;
 	Font gameFont;
 	Sprite sprtMouse;
 

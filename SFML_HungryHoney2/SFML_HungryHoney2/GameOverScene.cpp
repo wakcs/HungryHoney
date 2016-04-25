@@ -18,14 +18,14 @@ GameOverScene::~GameOverScene()
 
 bool GameOverScene::Initialize()
 {
-	if (!Scene::Initialize() || !txtrBackground.loadFromFile(dirLevel+"go_screen.png")) {
+	if (!Scene::Initialize() || !txtrBackground.loadFromFile(dirLevel + "go_screen.png")) {
 		return false;
 	}
 	sprtBackground.setTexture(txtrBackground);
 	sprtBackground.setPosition(TransformableExtender::SetCenter(&sprtBackground, windowSize->x / 2, windowSize->y / 2));
 	
-	btnRetry = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f((windowSize->x / 2) - 150, windowSize->y - 100), "Retry");
-	btnExit= MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f((windowSize->x / 2) + 150, windowSize->y - 100), "Exit To Menu");
+	btnRetry = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f((windowSize->x / 2) - 150, windowSize->y - 100), "Retry");
+	btnExit = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f((windowSize->x / 2) + 150, windowSize->y - 100), "Exit To Menu");
 
 	txtGameOverDesc.setFont(gameFont);
 	txtGameOverDesc.setString("You have been overrun by bees.");

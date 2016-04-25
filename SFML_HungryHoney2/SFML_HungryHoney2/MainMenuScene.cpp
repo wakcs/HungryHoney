@@ -23,10 +23,10 @@ bool MainMenuScene::Initialize()
 	if (!Scene::Initialize() || !txtrBackground.loadFromFile(dirLevel+"title_screen.png")) {
 		return false;
 	}
-	btnPlay = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(screenCenter.x, screenCenter.y - 150),"Play Game");
-	btnSettings = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(screenCenter.x, screenCenter.y - 50), "Settings");
-	btnAbout = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(screenCenter.x, screenCenter.y + 50), "About");
-	btnExit = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, Vector2f(screenCenter.x, screenCenter.y + 150), "Exit Game");
+	btnPlay = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(screenCenter.x, screenCenter.y - 150),"Play Game");
+	btnSettings = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(screenCenter.x, screenCenter.y - 50), "Settings");
+	btnAbout = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(screenCenter.x, screenCenter.y + 50), "About");
+	btnExit = MenuButton(&txtrBtnUnclicked, &txtrBtnClicked, &gameFont, &bufClick, Vector2f(screenCenter.x, screenCenter.y + 150), "Exit Game");
 	sprtBackground.setTexture(txtrBackground);
 	sprtBackground.setPosition(TransformableExtender::SetCenter(&sprtBackground, screenCenter));
 

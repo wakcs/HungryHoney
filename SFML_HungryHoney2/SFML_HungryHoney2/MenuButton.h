@@ -10,7 +10,7 @@ class MenuButton
 {
 public:
 	MenuButton();
-	MenuButton(Texture*unclickedTexture, Texture*clickedTexture, Font*textFont, Vector2f position, string buttonText);
+	MenuButton(Texture*unclickedTexture, Texture*clickedTexture, Font*textFont, SoundBuffer*bufClick, Vector2f position, string buttonText);
 	~MenuButton();
 
 	bool isClicked(RenderWindow & window);
@@ -20,6 +20,7 @@ public:
 
 private:
 	Sprite sprtBtnUnClicked, sprtBtnClicked;
+	Sound sndClick;
 	Text txtButton;
 	FloatRect rectButton;
 	bool isPressed;

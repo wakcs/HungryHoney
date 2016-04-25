@@ -15,6 +15,7 @@ Scene::Scene(GameState * state, Vector2i * windowSize)
 	dirSprite.insert(0, path);
 	dirLevel.insert(0, path);
 	dirFont.insert(0, path);
+	dirAudio.insert(0, path);
 }
 
 
@@ -25,7 +26,7 @@ Scene::~Scene()
 bool Scene::Initialize()
 {
 	if (!txtrBtnClicked.loadFromFile(dirSprite + "btnClick.png") || !txtrBtnUnclicked.loadFromFile(dirSprite + "btnUnclick.png") ||
-		!txtrMouse.loadFromFile(dirSprite + "mouse.png") || !gameFont.loadFromFile(dirFont + "kenpixel_square.ttf"))
+		!txtrMouse.loadFromFile(dirSprite + "mouse.png") || !gameFont.loadFromFile(dirFont + "kenpixel_square.ttf") || !bufClick.loadFromFile(dirAudio+"click.ogg"))
 	{
 		return false;
 	}

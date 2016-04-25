@@ -6,13 +6,13 @@ MenuButton::MenuButton()
 {
 }
 
-MenuButton::MenuButton(Texture * unclickedTexture, Texture * clickedTexture, Font * textFont, Vector2f position, string buttonText)
+MenuButton::MenuButton(Texture * unclickedTexture, Texture * clickedTexture, Font * textFont, SoundBuffer*bufClick, Vector2f position, string buttonText)
 {
 	sprtBtnUnClicked.setTexture(*unclickedTexture);
 	sprtBtnClicked.setTexture(*clickedTexture);
 	txtButton.setFont(*textFont);
 	txtButton.setString(buttonText);
-
+	sndClick.setBuffer(*bufClick);
 	SetPosition(position);
 }
 
@@ -25,6 +25,7 @@ bool MenuButton::isClicked(RenderWindow & window)
 {
 	Vector2f mousePos(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
 	if (Mouse::isButtonPressed(Mouse::Left) && rectButton.contains(mousePos)) {
+		sndClick.play();
 		isPressed = true;
 	}
 	else {
