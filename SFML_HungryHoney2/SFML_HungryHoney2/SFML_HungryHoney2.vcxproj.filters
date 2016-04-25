@@ -28,6 +28,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{0bb7ad0b-2b9e-410c-9294-74e4d9036eb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{a83003f7-331b-4c45-8fb8-c04706415807}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -84,16 +87,19 @@
     <ClInclude Include="GameOverScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AboutScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SettingsScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Other</Filter>
+    </ClInclude>
     <ClInclude Include="Obstruction.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundMusic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,9 +155,6 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AboutScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -159,6 +162,12 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Obstruction.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMusic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
