@@ -7,7 +7,7 @@ class BeeCharacter :
 {
 public:
 	BeeCharacter();
-	BeeCharacter(Texture* charachterTexture, Vector2f position, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healhtbarTexture, FloatRect center);
+	BeeCharacter(Texture* charachterTexture, Vector2f position, SoundBuffer*bufHit, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healhtbarTexture, FloatRect center);
 	virtual ~BeeCharacter();
 
 	//called in the update
@@ -20,7 +20,7 @@ private:
 	FloatRect respawnArea;
 	Vector2f center, oldPos;
 	Sprite sprtHealthBar;
-
+	
 	virtual void Move(PlayerCharacter * player);
 	virtual void Attack(PlayerCharacter * player);
 

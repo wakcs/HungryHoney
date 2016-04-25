@@ -5,11 +5,12 @@
 Character::Character()
 {
 }
-Character::Character(Texture * charachterTexture, Vector2f position)
+Character::Character(Texture * charachterTexture, Vector2f position, SoundBuffer * bufHit)
 {
 	sprtCharacter.setTexture(*charachterTexture);
 	sprtCharacter.setOrigin(sprtCharacter.getLocalBounds().width / 2, sprtCharacter.getLocalBounds().height / 2);
 	sprtCharacter.setPosition(position);
+	sndHit.setBuffer(*bufHit);
 	bIsDead = false;
 }
 Character::~Character()
@@ -92,5 +93,6 @@ void Character::Attack(Character * character)
 void Character::GetHit(float damagePoints)
 {
 	fHealthPoints -= damagePoints;
+	sndHit.play();
 	cout << "Character hit, current HP: " << fHealthPoints << endl;
 }

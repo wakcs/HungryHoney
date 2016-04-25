@@ -11,8 +11,8 @@ BeeCharacter::BeeCharacter()
 	fAttackRange = 0;
 	healthbarScale = 1;
 }
-BeeCharacter::BeeCharacter(Texture * charachterTexture, Vector2f position, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healthbarTexture, FloatRect spawnArea)
-	:Character(charachterTexture, position)
+BeeCharacter::BeeCharacter(Texture * charachterTexture, Vector2f position, SoundBuffer * bufHit, float maxSpeed, float healthPoints, float damagePoints, float attackRange, float pursuitRange, Texture * healthbarTexture, FloatRect spawnArea)
+	:Character(charachterTexture, position, bufHit)
 {
 	fMaxSpeed = maxSpeed;
 	fConstAngle = maxSpeed / 10;

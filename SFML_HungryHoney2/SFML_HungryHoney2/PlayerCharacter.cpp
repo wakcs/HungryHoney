@@ -8,8 +8,8 @@ PlayerCharacter::PlayerCharacter()
 	weaponOffset = Vector2f(0, 0);
 	fScore = 0;
 }
-PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position, Texture * suitTexture, Texture * weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange, FloatRect playBorder)
-	:Character(charachterTexture, position)
+PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position, SoundBuffer * bufHit, Texture * suitTexture, Texture * weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange)
+	:Character(charachterTexture, position,bufHit)
 {
 	suitOffset = Vector2f(0, 0);
 	weaponOffset = Vector2f(12, 0);
@@ -29,8 +29,7 @@ PlayerCharacter::PlayerCharacter(Texture * charachterTexture, Vector2f position,
 	PlayerCharacter::fDamagePoints = damagePoints;
 	PlayerCharacter::fAttackRange = attackRange;
 
-	attackTimer = Time(seconds(1)); 
-	PlayerCharacter::playBorder = playBorder;
+	attackTimer = Time(seconds(1));
 }
 PlayerCharacter::~PlayerCharacter()
 {
@@ -138,6 +137,7 @@ void PlayerCharacter::GetHit(float damagePoints)
 	float actualDamage = damagePoints - fDefencePoints;
 	if (actualDamage > 0) {
 		fHealthPoints -= actualDamage;
+		sndHit.play();
 	}
 	cout << "Player hit, current HP: " << fHealthPoints << endl;
 }

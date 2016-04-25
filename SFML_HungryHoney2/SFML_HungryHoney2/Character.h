@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include <iostream>
 #include "Vector2Extender.h"
 #include "TransformableExtender.h"
@@ -13,7 +14,7 @@ public:
 	Sprite sprtCharacter;
 
 	Character();
-	Character(Texture* charachterTexture, Vector2f position);
+	Character(Texture* charachterTexture, Vector2f position, SoundBuffer*bufHit);
 	virtual ~Character();
 
 	//called in the update
@@ -41,6 +42,9 @@ protected:
 	//attackdelay
 	Clock attackCounter;
 	Time attackTimer = Time(seconds(0));
+
+	//hit sound
+	Sound sndHit;
 
 	//special actions
 	virtual void Move();

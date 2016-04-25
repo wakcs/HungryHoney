@@ -8,7 +8,7 @@ public:
 	bool blockTop, blockBottom, blockLeft, blockRight;
 
 	PlayerCharacter();
-	PlayerCharacter(Texture*charachterTexture, Vector2f position, Texture* suitTexture, Texture*weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange, FloatRect playBorder);
+	PlayerCharacter(Texture*charachterTexture, Vector2f position, SoundBuffer* bufHit, Texture* suitTexture, Texture*weaponTexture, float maxSpeed, float healthPoints, float defencePoints, float damagePoints, float attackRange);
 	~PlayerCharacter();
 
 	//called in the update
@@ -32,8 +32,7 @@ private:
 	float fDefencePoints, fScore;
 	Sprite sprtSuit, sprtWeapon;
 	Vector2f suitOffset, weaponOffset;
-	FloatRect playBorder;
-
+	
 	//inputs
 	Keyboard::Key kbUp = Keyboard::Key::Up;
 	Keyboard::Key kbDown = Keyboard::Key::Down;
