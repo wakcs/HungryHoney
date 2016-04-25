@@ -5,7 +5,7 @@ class WeaponPickup :
 {
 public:
 	WeaponPickup();
-	WeaponPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, float damagePoints, float attackRange);
+	WeaponPickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, SoundBuffer*bufPickup, int pickupRange, float damagePoints, float attackRange);
 	~WeaponPickup();
 
 	void Update(PlayerCharacter* player);

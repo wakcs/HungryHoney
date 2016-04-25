@@ -7,7 +7,7 @@ Pickup::Pickup()
 	iPickupRange = 0;
 }
 
-Pickup::Pickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange)
+Pickup::Pickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position,SoundBuffer * bufPickup, int pickupRange)
 {
 	sprtItem.setTexture(*itemTexture);
 	sprtItem.setOrigin(sprtItem.getLocalBounds().width / 2, sprtItem.getLocalBounds().height / 2);
@@ -15,6 +15,7 @@ Pickup::Pickup(Texture * itemTexture, Texture * InteractTexture, Vector2f positi
 	sprtInteract.setOrigin(sprtInteract.getLocalBounds().width / 2, sprtInteract.getLocalBounds().height / 2);
 	SetPosition(position);
 	iPickupRange = pickupRange;
+	sndPickup.setBuffer(*bufPickup);
 }
 
 
@@ -32,6 +33,9 @@ void Pickup::Update(PlayerCharacter * player)
 	else 
 	{
 		bInRange = false;
+	}
+	if (bInRange && Keyboard::isKeyPressed(player->GetInteractKey())) {
+		sndPickup.play();
 	}
 }
 

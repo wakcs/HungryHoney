@@ -7,8 +7,8 @@ BeehivePickup::BeehivePickup()
 	spawnArea = FloatRect(0, 0, 0, 0);
 }
 
-BeehivePickup::BeehivePickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, int pickupRange, FloatRect spawnArea)
-	: Pickup(itemTexture, InteractTexture, position, pickupRange)
+BeehivePickup::BeehivePickup(Texture * itemTexture, Texture * InteractTexture, Vector2f position, SoundBuffer*bufPickup, int pickupRange, FloatRect spawnArea)
+	: Pickup(itemTexture, InteractTexture, position, bufPickup,pickupRange)
 {
 	BeehivePickup::spawnArea = spawnArea;
 }

@@ -6,7 +6,7 @@ class BeehivePickup :
 {
 public:
 	BeehivePickup();
-	BeehivePickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, int pickupRange, FloatRect spawnArea);
+	BeehivePickup(Texture* itemTexture, Texture* InteractTexture, Vector2f position, SoundBuffer*bufPickup, int pickupRange, FloatRect spawnArea);
 	~BeehivePickup();
 
 	void Update(PlayerCharacter* player);
