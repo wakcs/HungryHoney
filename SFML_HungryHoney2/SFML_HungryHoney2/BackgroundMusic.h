@@ -13,6 +13,6 @@ public:
 
 private:
 	Music musicMain, musicGameOver;
-	float musicVol = 10;
+	float musicVol = 25;
 };
 
