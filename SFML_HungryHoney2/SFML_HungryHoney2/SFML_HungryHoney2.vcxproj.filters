@@ -100,7 +100,7 @@
       <Filter>Other</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundMusic.h">
-      <Filter>Header Files</Filter>
+      <Filter>Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +168,7 @@
       <Filter>Other</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundMusic.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Other</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
